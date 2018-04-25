@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h1 id="SomeElementYouWantToAnimate">testtest</h1>
+
+<script>
+    let start = null;
+    let element = document.getElementById('SomeElementYouWantToAnimate');
+    element.style.position = 'absolute';
+
+    function step(timestamp) {
+        if (!start) start = timestamp;
+        let progress = timestamp - start;
+        element.style.left = Math.min(progress / 10, 200) + 'px';
+        if (progress < 2000) {
+            window.requestAnimationFrame(step);
+        }
+    }
+
+    window.requestAnimationFrame(step);
+</script>
+</body>
+</html>

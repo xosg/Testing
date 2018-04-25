@@ -1,5 +1,14 @@
-let line = 'abcde';
-let arr = line.split('');
-console.log(arr);
-let str = arr.join('');
-console.log(str.replace(/[bd]/g,'啊'));
+var start = null;
+var element = document.getElementById('SomeElementYouWantToAnimate');
+element.style.position = 'absolute';
+
+function step(timestamp) {
+    if (!start) start = timestamp;
+    var progress = timestamp - start;
+    element.style.left = Math.min(progress / 10, 200) + 'px';
+    if (progress < 2000) {
+        window.requestAnimationFrame(step);
+    }
+}
+
+window.requestAnimationFrame(step);

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div style="border: 1px solid #0e0;">
+    <div id="test" style="width:1px;height:17px;background:#0f0;">0%</div>
+</div>
+<input type="button" value="running" id="toggle"/>
+<script>
+    window.requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
+    let isRunning = true;
+    let ele = document.getElementById("test");
+    let progress = 0;
+
+    function step(timestamp) {
+        progress += 1;
+        ele.style.width = progress + "%";
+        ele.innerHTML = progress + "%";
+        if (progress < 100) {
+            requestID = requestAnimationFrame(step);
+        } else refresh();
+    }
+
+    let requestID = requestAnimationFrame(step);
+
+    function refresh() {
+        ele.style.width = "1px";
+        progress = 0;
+        requestID = requestAnimationFrame(step);
+    }
+
+    document.getElementById("toggle").addEventListener("click", function () {
+        if (isRunning) {
+            window.cancelAnimationFrame(requestID);
+            isRunning = false;
+            event.target.value = "paused";
+        } else {
+            requestID = requestAnimationFrame(step);
+            isRunning = true;
+            event.target.value = "running";
+        }
+
+    }, false);
+</script>
+</body>
+</html>
