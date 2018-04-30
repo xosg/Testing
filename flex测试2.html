@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        body{
+            background: #000;
+            margin: 0;
+        }
+        .flex-container {
+            position: fixed;
+            /*top:0;*/
+            left: 0;
+            bottom: 0;
+            /*width: 100%;*/
+            /*height: 100%;*/
+            display: flex;
+            justify-content: flex-end;
+            align-items: flex-start;    /*水平居左*/
+            flex-direction: column;
+            background-color: transparent;
+            padding: 10px;
+        }
+        /* 以下为辅助样式 */
+
+         .flex-item{
+            width: 50px;
+            padding:10px;
+            text-align: center;
+            margin: 10px;
+            background-color: #B1FF84;
+        }
+
+         .flex-item:hover{
+             background: #fff;
+         }
+        .flex-container .flex-item:first-child{
+            background-color: #F5DE25;
+        }
+        .flex-container .flex-item:last-child{
+            background-color: #90D9F7;
+        }
+    </style>
+
+</head>
+<body>
+
+
+
+    <div class="flex-item">1</div>
+    <div class="flex-item">2 </div>
+    <div class="flex-item">3 </div>
+
+<div class="flex-container">
+    <div class="flex-item">1</div>
+    <div class="flex-item">2 </div>
+    <div class="flex-item">3 </div>
+</div>
+
+</body>
+</html>
