@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9f9bb48c-287a-49f4-b3fd-717c5ba06d77" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/绝对定位相对父元素测试.html" beforeDir="false" afterPath="$PROJECT_DIR$/绝对定位相对父元素测试.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/斐波那契测试.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -16,11 +17,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="绝对定位相对父元素测试.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/绝对定位相对父元素测试.html">
+      <file leaf-file-name="斐波那契测试.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/斐波那契测试.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="465">
-              <caret line="31" column="19" selection-start-line="31" selection-start-column="19" selection-end-line="31" selection-end-column="19" />
+            <state relative-caret-position="105">
+              <caret line="7" column="28" selection-start-line="7" selection-start-column="28" selection-end-line="7" selection-end-column="28" />
             </state>
           </provider>
         </entry>
@@ -31,6 +32,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="HTML File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -50,6 +52,7 @@
       <list>
         <option value="$PROJECT_DIR$/图片下载测试(base64).html" />
         <option value="$PROJECT_DIR$/绝对定位相对父元素测试.html" />
+        <option value="$PROJECT_DIR$/斐波那契测试.js" />
       </list>
     </option>
   </component>
@@ -106,10 +109,16 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Node.js.斐波那契测试.js">
     <configuration name="图片下载测试(base64).html" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/test/图片下载测试(base64).html" />
+    <configuration name="斐波那契测试.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" nameIsGenerated="true" path-to-js-file="斐波那契测试.js" working-dir="$PROJECT_DIR$" />
+    <list>
+      <item itemvalue="JavaScript Debug.图片下载测试(base64).html" />
+      <item itemvalue="Node.js.斐波那契测试.js" />
+    </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Node.js.斐波那契测试.js" />
         <item itemvalue="JavaScript Debug.图片下载测试(base64).html" />
       </list>
     </recent_temporary>
@@ -125,23 +134,23 @@
       <option name="presentableId" value="Default" />
       <updated>1525162908481</updated>
       <workItem from="1525162910306" duration="656000" />
-      <workItem from="1525754369639" duration="281000" />
+      <workItem from="1525754369639" duration="742000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1576000" />
+    <option name="totallyTimeSpent" value="2037000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24947146" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24947146" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32969698" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.32969698" />
@@ -174,8 +183,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/绝对定位相对父元素测试.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="31" column="19" selection-start-line="31" selection-start-column="19" selection-end-line="31" selection-end-column="19" />
+        <state relative-caret-position="390">
+          <caret line="26" column="26" lean-forward="true" selection-start-line="26" selection-start-column="26" selection-end-line="26" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/斐波那契测试.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="28" selection-start-line="7" selection-start-column="28" selection-end-line="7" selection-end-column="28" />
         </state>
       </provider>
     </entry>
