@@ -32,8 +32,10 @@ function getIntersection() {
     //如果区间长度<0(右-左)则空集
     let left = a0[0] > a1[0] ? a0[0] : a1[0];
     let right = a0[1] > a1[1] ? a1[1] : a0[1];
+    //空集
     if (left > right) return null;
 
+    //求出的新区间
     let sec = [left, right];
 
     //当递归到最简情况返回结果
