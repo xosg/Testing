@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9f9bb48c-287a-49f4-b3fd-717c5ba06d77" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/3D变换测试.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test3.js" beforeDir="false" afterPath="$PROJECT_DIR$/test3.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -16,13 +16,23 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file leaf-file-name="3D变换测试.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/3D变换测试.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="331">
+              <caret line="124" column="46" selection-start-line="124" selection-start-column="42" selection-end-line="124" selection-end-column="57" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="HTML File" />
         <option value="JavaScript File" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -45,6 +55,7 @@
         <option value="$PROJECT_DIR$/斐波那契测试.js" />
         <option value="$PROJECT_DIR$/原型链.js" />
         <option value="$PROJECT_DIR$/test3.js" />
+        <option value="$PROJECT_DIR$/3D变换测试.html" />
       </list>
     </option>
   </component>
@@ -101,16 +112,19 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JavaScript Debug.图片下载测试(base64).html">
+  <component name="RunManager" selected="JavaScript Debug.3D变换测试.html">
+    <configuration name="3D变换测试.html" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/test/3D变换测试.html" />
     <configuration name="图片下载测试(base64).html" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/test/图片下载测试(base64).html" />
     <configuration name="斐波那契测试.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" nameIsGenerated="true" path-to-js-file="斐波那契测试.js" working-dir="$PROJECT_DIR$" />
     <configuration name="原型链.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" nameIsGenerated="true" path-to-js-file="原型链.js" working-dir="$PROJECT_DIR$" />
     <list>
       <item itemvalue="JavaScript Debug.图片下载测试(base64).html" />
       <item itemvalue="Node.js.斐波那契测试.js" />
+      <item itemvalue="JavaScript Debug.3D变换测试.html" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JavaScript Debug.3D变换测试.html" />
         <item itemvalue="Node.js.斐波那契测试.js" />
         <item itemvalue="JavaScript Debug.图片下载测试(base64).html" />
       </list>
@@ -129,15 +143,17 @@
       <workItem from="1525162910306" duration="656000" />
       <workItem from="1525754369639" duration="1133000" />
       <workItem from="1525764654573" duration="2086000" />
-      <workItem from="1525769531398" duration="497000" />
+      <workItem from="1525769531398" duration="539000" />
+      <workItem from="1525824856585" duration="1794000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5011000" />
+    <option name="totallyTimeSpent" value="6847000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24947146" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -200,6 +216,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret column="4" lean-forward="true" selection-start-column="4" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/3D变换测试.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="331">
+          <caret line="124" column="46" selection-start-line="124" selection-start-column="42" selection-end-line="124" selection-end-column="57" />
         </state>
       </provider>
     </entry>

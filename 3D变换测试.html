@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>魔方盒子</title>
+    <meta name="description" content="纯CSS3实现3D旋转动画和渐变事件">
+    <!--能用CSS实现的就别用JS-->
+    <style>
+        body {
+            background: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            height: 100%;
+        }
+
+        /*最外层容器样式*/
+        .wrap {
+        }
+
+        /*包裹所有容器样式*/
+        .cube {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto;
+            transform-style: preserve-3d;
+            transform: rotateX(-30deg) rotateY(-80deg);
+            animation: rotate linear 20s infinite;
+        }
+
+        @-webkit-keyframes rotate {
+            from {
+                transform: rotateX(0deg) rotateY(0deg);
+            }
+            to {
+                transform: rotateX(360deg) rotateY(360deg);
+            }
+        }
+
+        .cube div {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            opacity: 0.8;
+            transition: all .4s;
+        }
+
+        /*定义所有图片样式*/
+        .pic {
+            width: 150px;
+            height: 150px;
+        }
+
+        .cube .out_front {
+            transform: rotateY(0deg) translateZ(75px);
+        }
+
+        .cube .out_back {
+            transform: rotateY(180deg) translateZ(75px);
+        }
+
+        .cube .out_left {
+            transform: rotateY(-90deg) translateZ(75px);
+        }
+
+        .cube .out_right {
+            transform: rotateY(90deg) translateZ(75px);
+        }
+
+        .cube .out_top {
+            transform: rotateX(90deg) translateZ(75px);
+        }
+
+        .cube .out_bottom {
+            transform: rotateX(-90deg) translateZ(75px);
+        }
+
+        /*定义小正方体样式*/
+        .cube span {
+            display: block;
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            top: 50px;
+            left: 50px;
+        }
+
+        .cube .in_pic {
+            width: 50px;
+            height: 50px;
+        }
+
+        .cube .in_front {
+            transform: rotateY(0deg) translateZ(25px);
+        }
+
+        .cube .in_back {
+            transform: rotateY(180deg) translateZ(25px);
+        }
+
+        .cube .in_left {
+            transform: rotateY(-90deg) translateZ(25px);
+        }
+
+        .cube .in_right {
+            transform: rotateY(90deg) translateZ(25px);
+        }
+
+        .cube .in_top {
+            transform: rotateX(90deg) translateZ(25px);
+        }
+
+        .cube .in_bottom {
+            transform: rotateX(-90deg) translateZ(25px);
+        }
+
+        /*鼠标移入后样式*/
+        .cube:hover .out_front {
+            transform: rotateY(0deg) translateZ(120px);
+        }
+
+        .cube:hover .out_back {
+            transform: translateZ(-120px) rotateY(180deg);
+        }
+
+        .cube:hover .out_left {
+            transform: rotateY(-90deg) translateZ(120px);
+        }
+
+        .cube:hover .out_right {
+            transform: rotateY(90deg) translateZ(120px);
+        }
+
+        .cube:hover .out_top {
+            transform: rotateX(90deg) translateZ(120px);
+        }
+
+        .cube:hover .out_bottom {
+            transform: rotateX(-90deg) translateZ(120px);
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="wrap" id="wrap">
+    <!--包裹所有元素的容器-->
+    <div class="cube">
+        <!--大正方体-->
+        <!--前面图片 -->
+        <div class="out_front">
+            <img src="http://img.blog.csdn.net/20170716094246620" class="pic">
+        </div>
+        <!--后面图片 -->
+        <div class="out_back">
+            <img src="http://img.blog.csdn.net/20170716094334594" class="pic">
+        </div>
+        <!--左面图片 -->
+        <div class="out_left">
+            <img src="http://img.blog.csdn.net/20170716094400013" class="pic">
+        </div>
+        <!--右面图片 -->
+        <div class="out_right">
+            <img src="http://img.blog.csdn.net/20170716094422331" class="pic">
+        </div>
+        <!--上面图片 -->
+        <div class="out_top">
+            <img src="http://img.blog.csdn.net/20170716094444434" class="pic">
+        </div>
+        <!--下面图片 -->
+        <div class="out_bottom">
+            <img src="http://img.blog.csdn.net/20170716094504432" class="pic">
+        </div>
+
+        <!--小正方体 -->
+        <span class="in_front">
+                <img src="http://img.blog.csdn.net/20170716120759718" class="in_pic">
+            </span>
+        <span class="in_back">
+                 <img src="http://img.blog.csdn.net/20170716120759718" class="in_pic">
+            </span>
+        <span class="in_left">
+                <img src="http://img.blog.csdn.net/20170716120759718" class="in_pic">
+            </span>
+        <span class="in_right">
+                <img src="http://img.blog.csdn.net/20170716120759718" class="in_pic">
+            </span>
+        <span class="in_top">
+                <img src="http://img.blog.csdn.net/20170716120759718" class="in_pic">
+            </span>
+        <span class="in_bottom">
+                <img src="http://img.blog.csdn.net/20170716120759718" class="in_pic">
+            </span>
+    </div>
+
+</div>
+
+</body>
+</html>
