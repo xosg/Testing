@@ -5,7 +5,7 @@ const rl = readline.createInterface({
     output: process.stdout
 });
 
-const directions = ['UP', 'RIGHT', 'DOWN', 'LEFT'];
+const towords = ['UP', 'RIGHT', 'DOWN', 'LEFT'];
 
 
 console.log(`note: imagine U R now walking on the straight (UP) direction, then U choose to turn either left or right on random, let the machine guess what ur final direction is ?`)
@@ -23,12 +23,12 @@ console.log(`note: The sequence support only 'L' or 'R'; for instance, 'LLRRR'`)
                 question();
                 return;
             }
-            //将数组变成一个循环
+            //模拟一个循环链表
             if (dir === 'L' && --index === -1) index = 3;
             else if (dir === 'R' && ++index === 4) index = 0;
         }
 
-        console.log(`OK, Ur final direction is: ${directions[index]}`);
+        console.log(`OK, Ur final direction is: ${towords[index]}`);
 
         rl.close();
     });
