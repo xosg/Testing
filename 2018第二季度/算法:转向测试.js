@@ -15,17 +15,14 @@ console.log(`note: The sequence support only 'L' or 'R'; for instance, 'LLRRR'`)
 (function question() {
 
     rl.question(`Enter the sequence of direction :\n`, (sequence) => {
+
+        let index = 0;  //初试方向:UP
         for (let dir of sequence) {
             if (['L', 'R'].indexOf(dir) === -1) {
                 console.log(`INPUT ERROR: '${dir}' is not allowed , please reinput :`);
                 question();
                 return;
             }
-        }
-
-
-        let index = 0;  //初试方向:UP
-        for (let dir of sequence) {
             //将数组变成一个循环
             if (dir === 'L' && --index === -1) index = 3;
             else if (dir === 'R' && ++index === 4) index = 0;
