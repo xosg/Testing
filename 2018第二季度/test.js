@@ -1,14 +1,32 @@
-const request = require('request');
-const fs = require('fs');
 
-let fileName = '';
+let http = require('http');
 
-let stream = request.get('http://imgsrc.baidu.com/imgad/pic/item/dcc451da81cb39db04544f6adb160924ab183071.jpg')
-    .on('response', (res) => {
-        fileName = res.headers["content-type"].replace('/','.');
-        stream.pipe(fs.createWriteStream(`./${fileName}`));
+http.get('http://www.41242342.com/', function (res) {
+    res.setEncoding('binary');//转成二进制
+    var content = '';
+    res.on('error',(err)=>{
+        console.log(err);
+        process.exit(0);
     })
+    res.on('data', function (data) {
+        content += data;
+    }).on('end', function () {
+        let fileName = 'test.' + res.headers["content-type"].match('[^/]*$')[0];
+        fs.writeFile(diretory + fileName, content, 'binary', function (err) {
+            if (err) { };
+            console.log('保存');
+            // sleep.msleep(parseInt(Math.random()*1000));
+        });
+        // loop(++i);
+    });
 
-        //输出返回的内容
-        // console.log(body);
-        // fs.writeFile('./pic.jpeg',body);
+    // console.log('helloworld');
+}).on('error',(err)=>{
+    console.log(err);
+    // process.exit(0);
+    console.log('helloworld');
+});
+
+
+//同步发生错误需要catch //Uncaught error
+//异步发生错误需要监听error事件 //Unhandled 'error' event
