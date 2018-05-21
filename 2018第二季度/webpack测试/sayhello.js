@@ -6,3 +6,7 @@ exports.sayHello = toWhom => mustache.render(template, {
 })
 
 // console.log(exports.sayHello(`Jim`))
+
+
+//nodejs和浏览器的区别是核心库的不同:
+//浏览器没有文件系统和子进程;node灭有dom和css模型
