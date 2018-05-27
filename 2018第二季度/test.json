@@ -1,0 +1,25 @@
+[{
+        "post": {
+            "id": 0,
+            "content": "content",
+            "comments": [{
+                "author": "author1",
+                "avator": "http://…/a.jpg",
+                "comment": "comment1"
+            }]
+        }
+    },
+
+    {
+        "post2": {
+            "id": 0,
+            "content": "content"
+        },
+        "comment": {
+            "post_id": "0",
+            "author": "author1",
+            "avator": "http://…/a.jpg",
+            "comment": "comment1"
+        }
+    }
+]

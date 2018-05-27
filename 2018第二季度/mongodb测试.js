@@ -1,3 +1,5 @@
+// mongodb的语法和sql有河大的差别, 它是一种面向对象的点分语法..
+
 var MongoClient = require('mongodb').MongoClient;
 var url = "mongodb://localhost:27017/";
 
@@ -14,3 +16,6 @@ MongoClient.connect(url, function (err, db) {
         db.close();
     });
 });
+
+
+// > db.adminCommand( { renameCollection: "test.newCol", to: "test.col1" } )
