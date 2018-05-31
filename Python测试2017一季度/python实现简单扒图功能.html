@@ -1,0 +1,385 @@
+
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>python实现简单爬虫功能 - 虫师 - 博客园</title>
+<link type="text/css" rel="stylesheet" href="/bundles/blog-common.css?v=m_FXmwz3wxZoecUwNEK23PAzc-j9vbX_C6MblJ5ouMc1"/>
+<link id="MainCss" type="text/css" rel="stylesheet" href="/skins/Minyx2_Lite/bundle-Minyx2_Lite.css?v=SZw2BbxDoNzf2KY426xlQ2dJcAOuGveB7B4R0GLdxs01"/>
+<link type="text/css" rel="stylesheet" href="/blog/customcss/91739.css?v=LfcVDbX80919KwJm7jT6CZkrcrc%3d"/>
+<link id="mobile-style" media="only screen and (max-width: 768px)" type="text/css" rel="stylesheet" href="/skins/Minyx2_Lite/bundle-Minyx2_Lite-mobile.css?v=dQWSwTbNPjY2uq2QjR90l17aNZe95f9WadvAIcPIMh01"/>
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/fnng/rss"/>
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/fnng/rsd.xml"/>
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/fnng/wlwmanifest.xml"/>
+<script src="//common.cnblogs.com/script/jquery.js" type="text/javascript"></script>  
+<script type="text/javascript">var currentBlogApp = 'fnng', cb_enable_mathjax=false;var isLogined=false;</script>
+<script src="/bundles/blog-common.js?v=E1-LyrzANB2jbN9omtnpOHx3eU0Kt3DyislfhU0b5p81" type="text/javascript"></script>
+<script src="/skins/Minyx2_Lite/bundle-Minyx2_Lite.js?v=dAK2Rw4GyogXqBvhMZEW0IkYD2kjtuL3y_BKRj-vp4g1" language="javascript" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+
+
+<div id="container">
+    <a class="minyx" href="http://www.cnblogs.com/">代码改变世界</a>
+    <ul id="topMnu">
+        <!-- 统计数据 -->
+        <li>
+            
+                <div id="blog_stats">
+Posts - 271, 
+Articles - 1, 
+Comments - 2671
+<!----></div>
+            
+        </li>
+        <!-- 这边可以增加一些链接 -->
+        <!-- 博客园 -->
+        <li><a href="http://www.cnblogs.com">Cnblogs</a></li>
+        <!-- 管理 -->
+        <li id="topMnu-dashboard">
+            <a id="lnkDashboard" href="http://www.cnblogs.com/fnng/admin/EditPosts.aspx">Dashboard</a></li>
+        <li>
+            <a id="lnkLogin" href="http://passport.cnblogs.com/login.aspx?ReturnUrl=http://www.cnblogs.com/fnng/p/3576154.html">Login</a></li>
+    </ul>
+
+    <script type="text/javascript">
+        var m = window.__blog.topMenuRendered;
+        if (m) { m(__$("topMnu")); }
+    </script>
+
+    <div id="header">
+        <ul id="menu">
+            <!-- 首页，当前section加上current类 -->
+            <li id="menu-home" class="current">
+                <a id="lnkHome" href="http://www.cnblogs.com/fnng/">Home</a></li>
+            <!-- 联系 -->
+            <li id="menu-contact">
+                <a id="lnkContact" href="http://space.cnblogs.com/msg/send/%e8%99%ab%e5%b8%88">Contact</a></li>
+            <!-- 相册 -->
+            <li id="menu-gallary">
+                <a id="lnkGallery" href="http://www.cnblogs.com/fnng/gallery.html">Gallery</a></li>
+            <!-- Rss订阅 -->
+            <li id="rss">
+                <a id="lnkRss" href="http://www.cnblogs.com/fnng/rss">RSS</a></li>
+        </ul>
+        <div id="newmsg"></div>
+        <h1>
+            <!-- 主标题 -->
+            <a id="lnkBlogTitle" href="http://www.cnblogs.com/fnng/">虫师</a>
+            <!-- 子标题 -->
+            <small>
+                大人不华，君子务实。
+独立博客：http://www.testpub.cn</small>
+        </h1>
+    </div>
+
+    <script type="text/javascript">
+        var m = window.__blog.headerRendered;
+        if (m) { m(__$("header")); }
+    </script>
+
+    <div id="wrapper">
+        <div id="content">
+            <script type="text/javascript">
+                var m = window.__blog.preRenderPosts;
+                if (m) { m(); }
+            </script>
+            
+<div id="post_detail">
+<div class="post" id="post">
+    <a name="top"></a>
+    <h2><a id="cb_post_title_url" href="http://www.cnblogs.com/fnng/p/3576154.html">python实现简单爬虫功能</a></h2>
+    <small>2014-03-02 00:18 by 虫师, <span id="post_view_count">...</span> 阅读, <span id="post_comment_count">...</span> 评论, <a href="#" onclick="AddToWz(3576154);return false;">收藏</a>,  <a href ="https://i.cnblogs.com/EditPosts.aspx?postid=3576154" rel="nofollow">编辑</a></small>
+    <div class="entry">
+        <div id="cnblogs_post_body"><p class="p0">&nbsp;</p>
+<p class="p0"><span style="font-size: 15px;">　　在我们日常上网浏览网页的时候，经常会看到一些好看的图片，我们就希望把这些图片保存下载，或者用户用来做桌面壁纸，或者用来做设计的素材。</span></p>
+<p class="p0"><span style="font-size: 15px;">　　我们最常规的做法就是通过鼠标右键，选择另存为。但有些图片鼠标右键的时候并没有另存为选项，还有办法就通过就是通过截图工具截取下来，但这样就降低图片的清晰度。好吧～！其实你很厉害的，右键查看页面源代码。</span></p>
+<p class="p0"><span style="font-size: 15px;">　　我们可以通过<span style="font-family: 'Times New Roman';">python&nbsp;</span><span style="font-family: 宋体;">来实现这样一个简单的爬虫功能，把我们想要的代码爬取到本地。下面就看看如何使用</span><span style="font-family: 'Times New Roman';">python</span><span style="font-family: 宋体;">来实现这样一个功能。</span></span></p>
+<p class="p0"><span style="font-size: 15px;">&nbsp;</span></p>
+<p class="p0"><span style="font-size: 15px;">&nbsp;</span></p>
+<p class="p0"><strong><span style="font-size: 15px;">一，获取整个页面数据</span></strong></p>
+<p class="p0"><span style="font-size: 15px;">&nbsp;</span></p>
+<p class="p0"><span style="font-size: 15px;">首先我们可以先获取要下载图片的整个页面信息。</span></p>
+<p class="p0"><span style="font-size: 15px;">getjpg.py</span></p>
+<div class="cnblogs_code">
+<pre><span style="font-size: 14px;"><span style="color: #008000;">#</span><span style="color: #008000;">coding=utf-8</span>
+<span style="color: #0000ff;">import</span><span style="color: #000000;"> urllib
+
+</span><span style="color: #0000ff;">def</span><span style="color: #000000;"> getHtml(url):
+    page </span>=<span style="color: #000000;"> urllib.urlopen(url)
+    html </span>=<span style="color: #000000;"> page.read()
+    </span><span style="color: #0000ff;">return</span><span style="color: #000000;"> html
+
+html </span>= getHtml(<span style="color: #800000;">"</span><span style="color: #800000;">http://tieba.baidu.com/p/2738151262</span><span style="color: #800000;">"</span><span style="color: #000000;">)
+
+</span><span style="color: #0000ff;">print</span> html</span></pre>
+</div>
+<p class="p0">　　<span style="font-size: 15px;">Urllib&nbsp;<span style="font-family: 宋体;">模块提供了读取</span><span style="font-family: 'Times New Roman';">web</span><span style="font-family: 宋体;">页面数据的接口，我们可以像读取本地文件一样读取</span>www<span style="font-family: 宋体;">和</span><span style="font-family: 'Times New Roman';">ftp</span><span style="font-family: 宋体;">上的数据</span>。首先，我们定义了一个<span style="font-family: 'Times New Roman';">getHtml()</span><span style="font-family: 宋体;">函数</span><span style="font-family: 'Times New Roman';">:</span></span></p>
+<p class="p0"><span style="font-size: 15px;">　　urllib.urlopen()<span style="font-family: 宋体;">方法用于打开一个</span><span style="font-family: 'Times New Roman';">URL</span><span style="font-family: 宋体;">地址。</span></span></p>
+<p class="p0"><span style="font-size: 15px;">　　read()<span style="font-family: 宋体;">方法用于读取</span><span style="font-family: 'Times New Roman';">URL</span><span style="font-family: 宋体;">上的数据，向</span>getHtml()<span style="font-family: 宋体;">函数</span>传递一个网址，并把整个页面下载下来。执行程序就会把整个网页打印输出。</span></p>
+<p class="p0"><span style="font-size: 15px;">&nbsp;</span></p>
+<p class="p0"><span style="font-size: 15px;">&nbsp;</span></p>
+<p class="p0"><strong><span style="font-size: 15px;">二，筛选页面中想要的数据</span></strong></p>
+<p class="p0"><span style="font-size: 15px;">&nbsp;</span></p>
+<p class="p0"><span style="font-size: 15px;">　　Python&nbsp;<span style="font-family: 宋体;">提供了非常强大的正则表达式，我们</span>需要先要了解一点<span style="font-family: 'Times New Roman';">python&nbsp;</span><span style="font-family: 宋体;">正则表达式的知识才行。</span></span></p>
+<p class="p0"><span style="font-size: 15px;"><a href="http://www.cnblogs.com/fnng/archive/2013/05/20/3089816.html">http://www.cnblogs.com/fnng/archive/2013/05/20/3089816.html</a></span></p>
+<p class="p0"><span style="font-size: 15px;">&nbsp;</span></p>
+<p class="p0"><span style="font-size: 15px;">假如我们百度贴吧找到了几张漂亮的壁纸，通过到前段查看工具。找到了图片的地址，如：<span style="font-family: 'Times New Roman';">src=&rdquo;http://imgsrc.baidu.com/forum......jpg&rdquo;</span>pic_ext=&rdquo;jpeg&rdquo;</span></p>
+<p class="p0"><img src="http://images.cnitblog.com/i/311516/201403/020013141657112.png" alt="" /></p>
+<p class="p0"><span style="font-size: 15px;">修改代码如下：</span></p>
+<div class="cnblogs_code">
+<pre><span style="font-size: 14px;"><span style="color: #0000ff;">import</span><span style="color: #000000;"> re
+</span><span style="color: #0000ff;">import</span><span style="color: #000000;"> urllib
+
+</span><span style="color: #0000ff;">def</span><span style="color: #000000;"> getHtml(url):
+    page </span>=<span style="color: #000000;"> urllib.urlopen(url)
+    html </span>=<span style="color: #000000;"> page.read()
+    </span><span style="color: #0000ff;">return</span><span style="color: #000000;"> html
+
+</span><span style="color: #0000ff;">def</span><span style="color: #000000;"> getImg(html):
+    reg </span>= r<span style="color: #800000;">'</span><span style="color: #800000;">src="(.+?\.jpg)" pic_ext</span><span style="color: #800000;">'</span><span style="color: #000000;">
+    imgre </span>=<span style="color: #000000;"> re.compile(reg)
+    imglist </span>=<span style="color: #000000;"> re.findall(imgre,html)
+    </span><span style="color: #0000ff;">return</span><span style="color: #000000;"> imglist      
+   
+html </span>= getHtml(<span style="color: #800000;">"</span><span style="color: #800000;">http://tieba.baidu.com/p/2460150866</span><span style="color: #800000;">"</span><span style="color: #000000;">)
+</span><span style="color: #0000ff;">print</span> getImg(html)</span></pre>
+</div>
+<p class="p0">　<span style="font-size: 15px;">　我们又创建了<span style="font-family: 'Times New Roman';">getImg()</span><span style="font-family: 宋体;">函数，用于在获取的整个页面中筛选需要的图片连接。</span><span style="font-family: 'Times New Roman';">re</span><span style="font-family: 宋体;">模块主要包含了正则表达式：</span></span></p>
+<p class="p0"><span style="font-size: 15px;">　　re.compile()&nbsp;可以把正则表达式编译成一个正则表达式对象.</span></p>
+<p class="p0"><span style="font-size: 15px;">　　re.findall()&nbsp;<span style="font-family: 宋体;">方法读取</span><span style="font-family: 'Times New Roman';">html&nbsp;</span><span style="font-family: 宋体;">中包含&nbsp;</span><span style="font-family: 'Times New Roman';">imgre</span><span style="font-family: 宋体;">（正则表达式）的数据。</span></span></p>
+<p class="p0"><span style="font-size: 15px;">&nbsp;　　&nbsp;运行脚本将得到整个页面中包含图片的<span style="font-family: 'Times New Roman';">URL</span><span style="font-family: 宋体;">地址。</span></span></p>
+<p class="p0"><span style="font-size: 15px;">&nbsp;</span></p>
+<p class="p0"><span style="font-size: 15px;">&nbsp;</span></p>
+<p class="p0"><strong><span style="font-size: 15px;">三，将页面筛选的数据保存到本地</span></strong></p>
+<p class="p0"><span style="font-size: 15px;">&nbsp;</span></p>
+<p class="p0"><span style="font-size: 15px;">把筛选的图片地址通过<span style="font-family: 'Times New Roman';">for</span><span style="font-family: 宋体;">循环遍历并保存到本地，代码如下：</span></span></p>
+<p class="p0">&nbsp;</p>
+<div class="cnblogs_code">
+<pre><span style="font-size: 14px;"><span style="color: #008000;">#</span><span style="color: #008000;">coding=utf-8</span>
+<span style="color: #0000ff;">import</span><span style="color: #000000;"> urllib
+</span><span style="color: #0000ff;">import</span><span style="color: #000000;"> re
+
+</span><span style="color: #0000ff;">def</span><span style="color: #000000;"> getHtml(url):
+    page </span>=<span style="color: #000000;"> urllib.urlopen(url)
+    html </span>=<span style="color: #000000;"> page.read()
+    </span><span style="color: #0000ff;">return</span><span style="color: #000000;"> html
+
+</span><span style="color: #0000ff;">def</span><span style="color: #000000;"> getImg(html):
+    reg </span>= r<span style="color: #800000;">'</span><span style="color: #800000;">src="(.+?\.jpg)" pic_ext</span><span style="color: #800000;">'</span><span style="color: #000000;">
+    imgre </span>=<span style="color: #000000;"> re.compile(reg)
+    imglist </span>=<span style="color: #000000;"> re.findall(imgre,html)
+    x </span>=<span style="color: #000000;"> 0
+    </span><span style="color: #0000ff;">for</span> imgurl <span style="color: #0000ff;">in</span><span style="color: #000000;"> imglist:
+        urllib.urlretrieve(imgurl,</span><span style="color: #800000;">'</span><span style="color: #800000;">%s.jpg</span><span style="color: #800000;">'</span> %<span style="color: #000000;"> x)
+        x</span>+=1<span style="color: #000000;">
+
+
+html </span>= getHtml(<span style="color: #800000;">"</span><span style="color: #800000;">http://tieba.baidu.com/p/2460150866</span><span style="color: #800000;">"</span><span style="color: #000000;">)
+
+</span><span style="color: #0000ff;">print</span> getImg(html)</span></pre>
+</div>
+<p class="p0">&nbsp;</p>
+<p class="p0">　<span style="font-size: 15px;">　这里的核心是用到了urllib.urlretrieve()<span style="font-family: 宋体;">方法，直接将远程数据下载到本地。</span></span></p>
+<p class="p0"><span style="font-size: 15px;">　　通过一个<span style="font-family: 'Times New Roman';">for</span><span style="font-family: 宋体;">循环对获取的图片连接进行遍历，为了使图片的文件名看上去更规范，对其进行重命名，命名规则通过</span><span style="font-family: 'Times New Roman';">x</span><span style="font-family: 宋体;">变量加</span><span style="font-family: 'Times New Roman';">1</span><span style="font-family: 宋体;">。保存的位置默认为程序的存放目录。</span></span></p>
+<p class="p0"><span style="font-size: 15px;">程序运行完成，将在目录下看到下载到本地的文件。</span></p>
+<p class="p0">&nbsp;</p>
+<p class="p0"><img src="http://images.cnitblog.com/i/311516/201403/020014265548094.png" alt="" /></p>
+<p class="p0">&nbsp;</p>
+<p class="p0">&nbsp;</p>
+<p class="p0">&nbsp;</p></div><div id="MySignature"></div>
+        <div class="clear"></div>
+        <div id="blog_post_info_block">
+        <div id="blog_post_info">
+        </div>
+        <div class="clear"></div>
+        <div id="post_next_prev"></div>
+    </div>
+</div>
+    <ul class="postmetadata">
+        <li class="icon_cat" id="BlogPostCategory"></li>
+        <li class="icon_bullet" id="EntryTag"></li>
+    </ul>
+</div>
+<script type="text/javascript">var allowComments=true,cb_blogId=91739,cb_entryId=3576154,cb_blogApp=currentBlogApp,cb_blogUserGuid='f93e222f-6da1-e011-a53f-842b2b196315',cb_entryCreatedDate='2014/3/2 0:18:00';loadViewCount(cb_entryId);</script>
+<script type="text/javascript">
+    var m = window.__blog.postRendered;
+    if (m) { m(__$("post")); }
+</script>
+<script type="text/javascript">
+    var m = window.__blog.postRenderPosts;
+    if (m) { m(); }
+</script>
+</div><a name="!comments"></a><div id="blog-comments-placeholder"></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id='comment_form' class='commentform'>
+<a name='commentform'></a>
+<div id='divCommentShow'></div>
+<div id='comment_nav'><span id='span_refresh_tips'></span><a href='javascript:void(0);' onclick='return RefreshCommentList();' id='lnk_RefreshComments' runat='server' clientidmode='Static'>刷新评论</a><a href='#' onclick='return RefreshPage();'>刷新页面</a><a href='#top'>返回顶部</a></div>
+<div id='comment_form_container'></div>
+<div class='ad_text_commentbox' id='ad_text_under_commentbox'></div>
+<div id='ad_t2'></div>
+<div id='opt_under_post'></div>
+<div id='cnblogs_c1' class='c_ad_block'></div>
+<div id='under_post_news'></div>
+<div id='cnblogs_c2' class='c_ad_block'></div>
+<div id='under_post_kb'></div>
+<div id='HistoryToday' class='c_ad_block'></div>
+<script type='text/javascript'>
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);   
+</script>
+</div>
+
+
+        </div>
+
+        <script type="text/javascript">
+            var m = window.__blog.contentRendered;
+            if (m) { m(__$("content")); }
+        </script>
+
+        <div id="sidebar">
+            
+<div id="about">
+<div>
+<h2 id="about_title">About</h2>
+<div id="about_body">
+<div id="blog-news"></div>
+<script type="text/javascript">loadBlogNews();</script>
+</div>
+</div>
+</div>
+
+            <script type="text/javascript">
+                var m = window.__blog.aboutRendered;
+                if (m) { m(__$("about")); }
+            </script>
+            
+<div id="mySearchWrapper">
+    <div id="mySearch">
+        <input type="image" src="/skins/Minyx2_Lite/images/btnsearch.gif" id="btnZzk"  class="submit" onclick="zzk_go();return false;"/>
+        <label class="lb_search"><input type="text" id="q" onkeydown="return zzk_go_enter(event);" class="keyword" /></label>
+    </div>
+</div>
+
+            <script type="text/javascript">
+                var m = window.__blog.searchFormRendered;
+                if (m) { m(__$("searchform")); }
+            </script>
+            <div id="sideMain">
+            </div>
+            <div id="sideRight">
+            </div>
+            <div id="sideLeft">
+            </div>
+            
+                <div id="sideContainer">
+                </div>
+                <script type="text/javascript">
+                    $.ajax({
+                        url: '/' + currentBlogApp + '/mvc/blog/Minyx2_Lite_SideColumn.aspx',
+                        data: '{}',
+                        type: 'post',
+                        dataType: 'text',
+                        contentType: 'application/json; charset=utf-8',
+                        success: function (data) {
+                            if (data) {
+                                $("#sideContainer").html(data);
+                                loadBlogDefaultCalendar();
+                                loadBlogSideBlocks();
+                                var m = window.__blog.sideContainerRendered;
+                                if (m) { m(__$("sideContainer")); }
+                                window.__blog.sidebar.__layout();
+                            }
+                        }
+                    });
+
+                </script>
+            
+        </div>
+
+        <script type="text/javascript">
+            var m = window.__blog.sidebarRendered;
+            if (m) { m(__$("sidebar")); }
+        </script>
+
+        <div id="footer">
+            
+<p id="logoFoot">
+    <a href="http://www.spiga.com.mx/" title="Agencia Interactiva Spiga">www.spiga.com.mx</a>
+</p>
+<div class="footText">
+<p>
+Copyright &copy;2017 虫师
+</p>
+<p>
+<a href="http://www.cnblogs.com">博客园</a>
+</p>
+</div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        var m = window.__blog.wrapperRendered;
+        if (m) { m(__$("wrapper")); }
+    </script>
+
+</div>
+<script type="text/javascript">
+    var m = window.__blog.containerRendered;
+    if (m) { m(__$("container")); }
+</script>
+<!--PageEndHtml Block Begin-->
+<script src="http://s13.cnzz.com/stat.php?id=3347352&web_id=3347352&show=pic2" language="JavaScript">
+</script>
+<div align="center"><a href="http://www.amazingcounters.com"><img border="0" src="http://cc.amazingcounters.com/counter.php?i=3064217&c=9192964" alt="Web Page Counters"></a><br><a href="http://www.coupons-coupon-codes.com/staples/">Computer Desks</a></div>
+
+
+<!--评论，生成气泡效果标签代码-->
+  <script type="text/javascript" language="javascript"> 
+      $(document).ready(function() {
+          var commentTime = setInterval(function(){if($("#comments_pager_bottom").length>0){CommentBubble();clearTimeout(commentTime);}},50);
+      }); 
+      function CommentBubble()
+      {
+  var w1 = '<div class="list">' +
+          '<table class="out" border="0" cellspacing="0" cellpadding="0"> ' +
+             '<tr>' +
+                 '<td class="icontd" align="right" valign="bottom">' +
+                     '<img src="" width="70px" height="57px"/>' +
+                 '</td>' +
+                 '<td align="left" valign="bottom" class="q">' +
+                     '<table border="0" cellpadding="0" cellspacing="0" style=""> ' +
+                         '<tr><td class="topleft"></td><td class="top"></td><td class="topright"></td></tr> ' +
+                         '<tr><td class="left"></td> <td align="left" class="conmts"><p>';
+  
+  
+         var w2 = '</p> </td> <td class="right"></td></tr> ' +
+                         '<tr><td class="bottomleft"></td><td class="bottom"></td><td class="bottomright"></td></tr> ' +
+                     '</table>' +
+                 '</td> ' +
+             '</tr> ' +
+         '</table> ' +
+     '</div>';
+  
+         $.each($(".blog_comment_body"), function(i, t) {
+             $(t).html(w1 + $(t).html() + w2);
+         });
+ $(".louzhu").closest(".feedbackItem").find(".out").removeClass("out").addClass("inc");
+         /*.find(".q").attr("align","right");*/
+         }
+ </script>
+<!--PageEndHtml Block End-->
+</body>
+</html>

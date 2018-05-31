@@ -1,0 +1,835 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" href="http://www.nowamagic.net/images/favicon.gif" />
+<link rel="stylesheet" type="text/css" href="http://www.nowamagic.net/application/views/academy/css/main.css" />
+<link rel="stylesheet" type="text/css" href="http://www.nowamagic.net/application/views/academy/css/index.css?20130614_v3" />
+<link rel="stylesheet" type="text/css" href="http://www.nowamagic.net/application/views/academy/css/category_13.css" /><script type="text/javascript" src="http://www.nowamagic.net/application/views/academy/js/jquery.min.js"></script>
+<title>Python urllib的urlretrieve()函数解析 -- 简明现代魔法</title>
+<meta name='keywords' content='urllib,urlretrieve,Python urllib的urlretrieve()函数解析' /> 
+
+</head>
+
+<body class="webkit safari chrome win" id="large-header">
+<style type="text/css">
+#demo-canvas { position:absolute;top:0px;left:0px;z-index:0; }
+</style>
+<canvas id="demo-canvas" width="100%" height="100%"></canvas>
+<div class="layout-main">
+	<div class="layout-main-shortcuts">
+		<div class="container_12"> 
+			<a href="http://www.nowamagic.net/">首页</a> &middot; 
+			<a href="http://www.nowamagic.net/academy/">学院</a> &middot; 
+			<a href="http://www.nowamagic.net/librarys/veda/">博客</a> &middot; 
+			<a href="http://www.nowamagic.net/librarys/nmra/">协会</a> &middot; 
+			<a href="http://www.nowamagic.net/librarys/news/">资讯</a> &middot; 
+			<a href="http://www.nowamagic.net/librarys/eight/">八点</a> &middot; 
+			<a href="http://www.nowamagic.net/librarys/accounts/login/">登录</a> </div>
+	</div>
+	<div class="layout-main-bg">
+		<div class="layout-main-header">
+			<div class="container_12">
+				<div class="grid_4" id="logo"> 
+				<!-- <a class="logo" href="/"><img alt="NowaMagic Academy" src="http://www.nowamagic.net/application/views/academy/img/logo.png" title="NowaMagic Academy" width="284" height="64" /></a> -->
+					<h1><a href="http://www.nowamagic.net/academy/">现代魔法学院</a></h1>
+					<span>学习是为了探索这个世界的本质</span>
+				</div>
+				<div class="grid_8 omega">
+					<div class="nav">
+						<ul class="menu" id="yw0">
+							<li class="about"><a class="main" href="#">编程语言</a>
+								<ul>
+									<li><a href="http://www.nowamagic.net/academy/category/10/">C语言</a></li>
+									<li><a href="#">C++</a></li>
+									<li><a href="http://www.nowamagic.net/academy/category/12/">PHP</a></li>
+									<li><a href="http://www.nowamagic.net/academy/category/13/">Python</a></li>
+									<li class="last"><a href="#">Java</a></li>
+								</ul>
+							</li>
+							<li class="downloads"><a class="main" href="#">前端设计</a>
+								<ul>
+									<li><a href="#">HTML</a></li>
+									<li><a href="#">CSS</a></li>
+									<li><a href="http://www.nowamagic.net/academy/category/23/">JavaScript</a></li>
+									<li><a href="#">jQuery</a></li>
+									<li><a href="#">Ajax</a></li>
+									<li><a href="#">Flex/ActionScript</a></li>
+									<li class="last"><a href="#">Web设计理念</a></li>
+								</ul>
+							</li>
+							<!-- <li class="documentation active"><a class="main" href="/doc/">数据之美</a> -->
+							<li class=" "><a class="main" href="#">数据之美</a>
+								<ul>
+									<li><a href="http://www.nowamagic.net/academy/category/30/">数据结构</a></li>
+									<li><a href="#">计算机数学</a></li>
+									<li class="last"><a href="http://www.nowamagic.net/academy/category/32/">数据库技术</a></li>
+								</ul>
+							</li>
+							<li class="development"><a class="main" href="#">编程思想</a>
+								<ul>
+									<li><a href="http://www.nowamagic.net/academy/category/40/">计算机算法</a></li>
+									<li><a href="#">面向对象技术</a></li>
+									<li><a href="#">设计模式</a></li>
+									<li class="last"><a href="http://www.nowamagic.net/academy/category/48/">软件工程与项目管理</a></li>
+								</ul>
+							</li>
+							<li class=" "><a class="main" href="#">移动开发</a>
+								<ul>
+									<li><a href="#">iOS</a></li>
+									<li><a href="http://www.nowamagic.net/academy/category/50/">Android</a></li>
+									<li><a href="#">Windows Phone</a></li>
+									<li class="last"><a href="#">Moblie Internet</a></li>
+								</ul>
+							</li>
+							<li class="community last"><a class="main" href="#">计算机基础</a>
+								<ul>
+									
+									<li><a href="http://www.nowamagic.net/academy/category/65/">Linux操作系统</a></li>
+									<li><a href="http://www.nowamagic.net/academy/category/72/">运维管理</a></li>
+									<li><a href="http://www.nowamagic.net/academy/category/77/">搜索引擎优化SEO</a></li>
+									<li><a href="http://www.nowamagic.net/academy/category/99/">ACG天地</a></li>
+									<li class="last"><a href="http://www.nowamagic.net/academy/category/68/">智力开发与知识管理</a></li>
+								</ul>
+							</li>
+						</ul>
+						<div class="search">
+							<form method="get" action="/search/">
+								<div class="keyword">
+									<input name="q" value="" />
+									<a href="#" title="search" class="global-search">search</a> </div>
+							</form>
+						</div>
+					</div>
+				</div>
+				<div class="clear"></div>
+			</div>
+		</div>
+<div class="container_12">
+	<div class="grid_12">
+		<div class="y_main y_index fbg clearfix" style="margin-bottom:20px;">
+			<div class="y_l_n">
+				<div class="breadcrumb">
+					<a href="http://www.nowamagic.net/academy/">首页</a>
+					<img src="http://www.nowamagic.net/application/views/academy/img/arrow.png" alt=""  />
+					<a href="http://www.nowamagic.net/academy/category/13">Python程序设计</a>
+					<img src="http://www.nowamagic.net/application/views/academy/img/arrow.png" alt=""  /> 
+					<a href="http://www.nowamagic.net/academy/part/13/121/">Python编程入门篇</a>
+					<img src="http://www.nowamagic.net/application/views/academy/img/arrow.png" alt=""  /> 
+					<a href="http://www.nowamagic.net/academy/detail/1302861">Python urllib的urlretrieve()函数解析</a>
+				</div>
+				
+				<ul class="y_single clearfix">
+					<li>
+						<h1>Python urllib的urlretrieve()函数解析</h1><span class="vicetitle">Python的爬虫函数</span>
+						<div class="post_info">
+							<div class="post_info_left">条目创建于 2013-10-30 &nbsp;&nbsp;&nbsp; 67244 views</div>
+							<div class="post_info_right"> 
+								<!-- <a href="#respond" class="post_comment"></a> -->
+															</div>
+						</div>
+						<div class="post_meta"></div>
+						<div class="ser_status">服务器君一共花费 <span>241.883 ms</span> 进行了 <span>2</span> 次数据库查询，努力地为您提供了这个页面。</div>
+						
+						<div class="googl_ad">
+							<div style="overflow: hidden;height:250px;"> 
+				<span style="background-color:#ffffff;"> 
+					<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- eight -->
+<ins class="adsbygoogle"
+     style="display:inline-block;width:250px;height:250px"
+     data-ad-client="ca-pub-3908995730077629"
+     data-ad-slot="3234186240"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+				</span>
+				<span>
+				<a href="http://www.nowamagic.net/academy/donation/" target="_blank" rel="external nofollow"> <img no_lazyload_pic_num="9" class="BSHARE_IMAGE_NO" src="http://www.nowamagic.net/librarys/images/forabp_250_250.jpg" style="width: 100%; height: 100%; opacity: 1;" alt="广告很萌的" onClick="javascript:alert('额……ABP或各种拦截还在呢！运营个网站不容易呢');"> </a>
+				</span></div>
+						</div>
+						<div class="toc">
+							<ol class="dtree">
+								<li>Chapter: 标准库：urllib/urllib2</li>
+								<li>
+									<ol>
+																				<li>
+											<span class="tocnumber">1. </span>
+											<a href="http://www.nowamagic.net/academy/detail/1302803">
+											<span class="toctext">对Python标准库的一个大致认识</span>
+											</a>
+										</li>
+																				<li>
+											<span class="tocnumber">2. </span>
+											<a href="http://www.nowamagic.net/academy/detail/1302859">
+											<span class="toctext">Python urllib模块与urlopen()函数解析</span>
+											</a>
+										</li>
+																				<li>
+											<span class="tocnumber">3. </span>
+											<a href="http://www.nowamagic.net/academy/detail/1302860">
+											<span class="toctext">urllib urlopen()对象方法/代理的补充说明</span>
+											</a>
+										</li>
+																				<li>
+											<span class="tocnumber">4. </span>
+											<a href="http://www.nowamagic.net/academy/detail/1302861">
+											<span class="toctext">Python urllib的urlretrieve()函数解析</span>
+											</a>
+										</li>
+																				<li>
+											<span class="tocnumber">5. </span>
+											<a href="http://www.nowamagic.net/academy/detail/1302863">
+											<span class="toctext">Python urllib模块的URL编码解码功能</span>
+											</a>
+										</li>
+																				<li>
+											<span class="tocnumber">6. </span>
+											<a href="http://www.nowamagic.net/academy/detail/1302866">
+											<span class="toctext">Python库里urllib和urllib2的区别</span>
+											</a>
+										</li>
+																				<li>
+											<span class="tocnumber">7. </span>
+											<a href="http://www.nowamagic.net/academy/detail/1302868">
+											<span class="toctext">urllib2的一些简单介绍</span>
+											</a>
+										</li>
+																				<li>
+											<span class="tocnumber">8. </span>
+											<a href="http://www.nowamagic.net/academy/detail/1302870">
+											<span class="toctext">urllib2与urllib一些常用方法的比较</span>
+											</a>
+										</li>
+																				<li>
+											<span class="tocnumber">9. </span>
+											<a href="http://www.nowamagic.net/academy/detail/1302871">
+											<span class="toctext">urllib2的一些常用方法介绍</span>
+											</a>
+										</li>
+																				<li>
+											<span class="tocnumber">10. </span>
+											<a href="http://www.nowamagic.net/academy/detail/1302872">
+											<span class="toctext">Python urllib2 的更多使用细节</span>
+											</a>
+										</li>
+																				<li>
+											<span class="tocnumber">11. </span>
+											<a href="http://www.nowamagic.net/academy/detail/1302877">
+											<span class="toctext">coiokielib模块与urllib2的配合使用</span>
+											</a>
+										</li>
+																				<li>
+											<span class="tocnumber">12. </span>
+											<a href="http://www.nowamagic.net/academy/detail/1302879">
+											<span class="toctext">创建Opener对象以实现Cookie与其它HTTP功能</span>
+											</a>
+										</li>
+																				<li>
+											<span class="tocnumber">13. </span>
+											<a href="http://www.nowamagic.net/academy/detail/1302880">
+											<span class="toctext">Python HTTP客户端如何实现自定义Cookie</span>
+											</a>
+										</li>
+																				<li>
+											<span class="tocnumber">14. </span>
+											<a href="http://www.nowamagic.net/academy/detail/1302882">
+											<span class="toctext">用Python模拟登录网站</span>
+											</a>
+										</li>
+																			</ol>
+								</li>
+							</ol>
+						</div>
+						
+						<div class="aca_content">
+						<p>下面我们再来看看 <a href="http://www.nowamagic.net/academy/tag/urllib" target="_blank">urllib</a> 模块提供的 urlretrieve() 函数。urlretrieve() 方法直接将远程数据下载到本地。</p>
+
+<pre class="brush: py;">
+>>> help(urllib.urlretrieve)
+Help on function urlretrieve in module urllib:
+
+urlretrieve(url, filename=None, reporthook=None, data=None)
+</pre>
+
+<ul>
+<li>参数 finename 指定了保存本地路径（如果参数未指定，urllib会生成一个临时文件保存数据。）</li>
+<li>参数 reporthook 是一个回调函数，当连接上服务器、以及相应的数据块传输完毕时会触发该回调，我们可以利用这个回调函数来显示当前的下载进度。</li>
+<li>参数 data 指 post 到服务器的数据，该方法返回一个包含两个元素的(filename, headers)元组，filename 表示保存到本地的路径，header 表示服务器的响应头。</li>
+</ul>
+
+<p>下面通过例子来演示一下这个方法的使用，这个例子将 google 的 html 抓取到本地，保存在 D:/google.html 文件中，同时显示下载的进度。</p>
+
+<pre class="brush: py;">
+import urllib
+def cbk(a, b, c):  
+    '''回调函数 
+    @a: 已经下载的数据块 
+    @b: 数据块的大小 
+    @c: 远程文件的大小 
+    '''  
+    per = 100.0 * a * b / c  
+    if per > 100:  
+        per = 100  
+    print '%.2f%%' % per
+  
+url = 'http://www.google.com'
+local = 'd://google.html'
+urllib.urlretrieve(url, local, cbk)
+</pre>
+
+<p>在 Python Shell 里执行如下：</p>
+
+<pre class="brush: py;">
+Python 2.7.5 (default, May 15 2013, 22:44:16) [MSC v.1500 64 bit (AMD64)] on win32
+Type "copyright", "credits" or "license()" for more information.
+>>> import urllib
+>>> def cbk(a, b, c):  
+    '''回调函数 
+    @a: 已经下载的数据块 
+    @b: 数据块的大小 
+    @c: 远程文件的大小 
+    '''  
+    per = 100.0 * a * b / c  
+    if per > 100:  
+        per = 100  
+    print '%.2f%%' % per
+
+    
+>>> url = 'http://www.google.com'
+>>> local = 'd://google.html'
+>>> urllib.urlretrieve(url, local, cbk)
+-0.00%
+-819200.00%
+-1638400.00%
+-2457600.00%
+('d://google.html', &lt;httplib.HTTPMessage instance at 0x0000000003450608>)
+>>> 
+</pre>
+
+<p>下面是 <a href="http://www.nowamagic.net/academy/tag/urlretrieve" target="_blank">urlretrieve()</a> 下载文件实例，可以显示下载进度。</p>
+
+<pre class="brush: py;">
+#!/usr/bin/python
+#encoding:utf-8
+import urllib
+import os
+def Schedule(a,b,c):
+    '''''
+    a:已经下载的数据块
+    b:数据块的大小
+    c:远程文件的大小
+   '''
+    per = 100.0 * a * b / c
+    if per > 100 :
+        per = 100
+    print '%.2f%%' % per
+url = 'http://www.python.org/ftp/python/2.7.5/Python-2.7.5.tar.bz2'
+#local = url.split('/')[-1]
+local = os.path.join('/data/software','Python-2.7.5.tar.bz2')
+urllib.urlretrieve(url,local,Schedule)
+######output######
+#0.00%
+#0.07%
+#0.13%
+#0.20%
+#....
+#99.94%
+#100.00%
+</pre>
+
+<p>通过上面的练习可以知道，urlopen() 可以轻松获取远端 html 页面信息，然后通过 python 正则对所需要的数据进行分析，匹配出想要用的数据，在利用urlretrieve() 将数据下载到本地。对于访问受限或者对连接数有限制的远程 url 地址可以采用 proxies（代理的方式）连接，如果远程数据量过大，单线程下载太慢的话可以采用多线程下载，这个就是传说中的爬虫。</p>						</div>
+						
+						<div class="share">
+							<!-- Baidu Button BEGIN -->
+<div id="bdshare" class="bdshare_t bds_tools get-codes-bdshare">
+<span class="bds_more">分享到：</span>
+<a class="bds_tsina">新浪微博</a>
+<a class="bds_tqq">腾讯微博</a>
+<a class="bds_qzone">QQ空间</a>
+<a class="bds_renren">人人网</a>
+<a class="bds_douban">豆瓣网</a>
+<a class="bds_mshare">一键分享</a>
+<a class="shareCount"></a>
+</div>
+<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=4016554" ></script>
+<script type="text/javascript" id="bdshell_js"></script>
+<script type="text/javascript">
+document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000);
+</script>
+<!-- Baidu Button END -->							<div class="clearfix"></div>
+						</div>
+						
+					</li>
+				</ul>
+
+				<div class="y_index_discovery_b clearfix">
+					<div class="img"> <a target="_blank" href="#"><img src="http://www.nowamagic.net/application/views/academy/images/rand_1.jpg"></a>
+						<div class="name"><a target="_blank" href="#">传道、授业、解惑</a></div>
+					</div>
+					<ul>
+						<li><a target="_blank" href="#">相关文章</a></li>
+					</ul>
+				</div>
+				<div class="y_p_name n"><span><a href="#">更多 <i class="icon-chevron-right"></i><i class="icon-chevron-right"></i></a></span>推荐条目</div>
+				<div class="y_g_h_articles">
+					<div class="y_g_h_source clearfix" style="padding-top:11px;">
+						<h3 style="height:22px; overflow:hidden;"><a target="_blank" href="#">Welcome to NowaMagic Academy!</a></h3>
+						<p><a href="#">现代魔法 </a> 推荐于 2013-02-27 10:23&nbsp;&nbsp;&nbsp;<span><i class="icon-bullhorn"></i></span></p>
+					</div>
+				</div>
+			</div>
+
+<script type="text/javascript" src="http://www.nowamagic.net/includes/syntaxhighlighter_2.1.364/scripts/shCore.js"></script>
+<link type="text/css" rel="stylesheet" href="http://www.nowamagic.net/includes/syntaxhighlighter_2.1.364/styles/shCore.css"/>
+<link type="text/css" rel="stylesheet" href="http://www.nowamagic.net/includes/syntaxhighlighter_2.1.364/styles/shThemeDefault.css"/>
+<script type="text/javascript">
+	SyntaxHighlighter.config.clipboardSwf = 'http://www.nowamagic.net/includes/syntaxhighlighter_2.1.364/scripts/clipboard.swf';
+	SyntaxHighlighter.all();
+</script><script type="text/javascript" src="http://www.nowamagic.net/includes/syntaxhighlighter_2.1.364/scripts/shBrushPython.js"></script><script type="text/javascript" src="http://www.nowamagic.net/includes/syntaxhighlighter_2.1.364/scripts/shBrushPhp.js"></script>
+<script type="text/javascript" src="http://www.nowamagic.net/includes/syntaxhighlighter_2.1.364/scripts/shBrushXml.js"></script>
+<script type="text/javascript" src="http://www.nowamagic.net/includes/syntaxhighlighter_2.1.364/scripts/shBrushJScript.js"></script>
+<script type="text/javascript" src="http://www.nowamagic.net/includes/syntaxhighlighter_2.1.364/scripts/shBrushXml.js"></script>
+<script type="text/javascript" src="http://www.nowamagic.net/includes/syntaxhighlighter_2.1.364/scripts/shBrushCpp.js"></script>
+<script type="text/javascript" src="http://www.nowamagic.net/includes/syntaxhighlighter_2.1.364/scripts/shBrushBash.js"></script>			
+			
+			<div class="y_r_n">
+				<!-- acacont_6.jpg -->
+				<div class="y_index_ad"><a><img src="http://www.nowamagic.net/application/views/academy/images/nmacademy.jpg"></a></div>
+				
+				<div class="title">
+					<!-- <span><a href="#">更多 <i class="icon-chevron-right"></i><i class="icon-chevron-right"></i></a></span> -->
+					本章最新发布
+				</div>
+				<div class="y_s_box">
+					<ol class="dtree">
+																<li>
+									<!-- <span class="tocnumber">1. </span> -->
+									<a href="http://www.nowamagic.net/academy/detail/1302219" target="_blank">
+									<span class="toctext">Python那些吸引我的编程特性 </span>
+									</a>
+									<span class="views_show">8569 views</span>
+								</li>
+																<li>
+									<!-- <span class="tocnumber">2. </span> -->
+									<a href="http://www.nowamagic.net/academy/detail/1302882" target="_blank">
+									<span class="toctext">用Python模拟登录网站 </span>
+									</a>
+									<span class="views_show">37921 views</span>
+								</li>
+																<li>
+									<!-- <span class="tocnumber">3. </span> -->
+									<a href="http://www.nowamagic.net/academy/detail/1302871" target="_blank">
+									<span class="toctext">urllib2的一些常用方法介绍 </span>
+									</a>
+									<span class="views_show">5531 views</span>
+								</li>
+																<li>
+									<!-- <span class="tocnumber">4. </span> -->
+									<a href="http://www.nowamagic.net/academy/detail/1302877" target="_blank">
+									<span class="toctext">coiokielib模块与urllib2的配合使用 </span>
+									</a>
+									<span class="views_show">5197 views</span>
+								</li>
+																<li>
+									<!-- <span class="tocnumber">5. </span> -->
+									<a href="http://www.nowamagic.net/academy/detail/1302879" target="_blank">
+									<span class="toctext">创建Opener对象以实现Cookie与其它HTTP功能 </span>
+									</a>
+									<span class="views_show">9038 views</span>
+								</li>
+																<li>
+									<!-- <span class="tocnumber">6. </span> -->
+									<a href="http://www.nowamagic.net/academy/detail/1302880" target="_blank">
+									<span class="toctext">Python HTTP客户端如何实现自定义Cookie </span>
+									</a>
+									<span class="views_show">5892 views</span>
+								</li>
+																<li>
+									<!-- <span class="tocnumber">7. </span> -->
+									<a href="http://www.nowamagic.net/academy/detail/1302872" target="_blank">
+									<span class="toctext">Python urllib2 的更多使用细节 </span>
+									</a>
+									<span class="views_show">13599 views</span>
+								</li>
+																<li>
+									<!-- <span class="tocnumber">8. </span> -->
+									<a href="http://www.nowamagic.net/academy/detail/1302870" target="_blank">
+									<span class="toctext">urllib2与urllib一些常用方法的比较 </span>
+									</a>
+									<span class="views_show">12243 views</span>
+								</li>
+																<li>
+									<!-- <span class="tocnumber">9. </span> -->
+									<a href="http://www.nowamagic.net/academy/detail/1302868" target="_blank">
+									<span class="toctext">urllib2的一些简单介绍 </span>
+									</a>
+									<span class="views_show">5796 views</span>
+								</li>
+																<li>
+									<!-- <span class="tocnumber">10. </span> -->
+									<a href="http://www.nowamagic.net/academy/detail/1302860" target="_blank">
+									<span class="toctext">urllib urlopen()对象方法/代理的补充说明 </span>
+									</a>
+									<span class="views_show">6409 views</span>
+								</li>
+																<li>
+									<!-- <span class="tocnumber">11. </span> -->
+									<a href="http://www.nowamagic.net/academy/detail/1302863" target="_blank">
+									<span class="toctext">Python urllib模块的URL编码解码功能 </span>
+									</a>
+									<span class="views_show">22338 views</span>
+								</li>
+																<li>
+									<!-- <span class="tocnumber">12. </span> -->
+									<a href="http://www.nowamagic.net/academy/detail/1302861" target="_blank">
+									<span class="toctext">Python urllib的urlretrieve()函数解析 </span>
+									</a>
+									<span class="views_show">67243 views</span>
+								</li>
+													</ol>
+				</div>
+				<div class="y_sep"></div>
+				
+				<div class="title">
+					<!-- <span><a href="#">更多 <i class="icon-chevron-right"></i><i class="icon-chevron-right"></i></a></span> -->
+					随机专题
+				</div>
+				<div class="y_s_box">
+					<ol class="dtree">
+																<li>
+									<!-- <span class="tocnumber">1. </span> -->
+									<span class="tocnumber">[数据结构] </span>
+									<a href="http://www.nowamagic.net/academy/detail/3007003" target="_blank">
+									<span class="toctext">图的定义 </span>
+									</a>
+									<span class="views_show">1 个条目</span>
+								</li>
+																<li>
+									<!-- <span class="tocnumber">2. </span> -->
+									<span class="tocnumber">[运维管理] </span>
+									<a href="http://www.nowamagic.net/academy/detail/72150309" target="_blank">
+									<span class="toctext">路由器与交换机 </span>
+									</a>
+									<span class="views_show">4 个条目</span>
+								</li>
+																<li>
+									<!-- <span class="tocnumber">3. </span> -->
+									<span class="tocnumber">[数据库技术] </span>
+									<a href="http://www.nowamagic.net/academy/detail/3203050" target="_blank">
+									<span class="toctext">MySQL常用自带函数 </span>
+									</a>
+									<span class="views_show">3 个条目</span>
+								</li>
+																<li>
+									<!-- <span class="tocnumber">4. </span> -->
+									<span class="tocnumber">[移动开发] </span>
+									<a href="http://www.nowamagic.net/academy/detail/50110203" target="_blank">
+									<span class="toctext">Android根基概念Context </span>
+									</a>
+									<span class="views_show">8 个条目</span>
+								</li>
+																<li>
+									<!-- <span class="tocnumber">5. </span> -->
+									<span class="tocnumber">[移动开发] </span>
+									<a href="http://www.nowamagic.net/academy/detail/50210406" target="_blank">
+									<span class="toctext">Android里的ContentValues </span>
+									</a>
+									<span class="views_show">2 个条目</span>
+								</li>
+																<li>
+									<!-- <span class="tocnumber">6. </span> -->
+									<span class="tocnumber">[移动开发] </span>
+									<a href="http://www.nowamagic.net/academy/detail/50160215" target="_blank">
+									<span class="toctext">Android布局基本知识 </span>
+									</a>
+									<span class="views_show">3 个条目</span>
+								</li>
+																<li>
+									<!-- <span class="tocnumber">7. </span> -->
+									<span class="tocnumber">[智力开发与知识管理] </span>
+									<a href="http://www.nowamagic.net/academy/detail/6805010" target="_blank">
+									<span class="toctext">信息的类型与结构 </span>
+									</a>
+									<span class="views_show">9 个条目</span>
+								</li>
+																<li>
+									<!-- <span class="tocnumber">8. </span> -->
+									<span class="tocnumber">[Python程序设计] </span>
+									<a href="http://www.nowamagic.net/academy/detail/13321005" target="_blank">
+									<span class="toctext">Tornado源码解析 </span>
+									</a>
+									<span class="views_show">23 个条目</span>
+								</li>
+																<li>
+									<!-- <span class="tocnumber">9. </span> -->
+									<span class="tocnumber">[数据库技术] </span>
+									<a href="http://www.nowamagic.net/academy/detail/3202050" target="_blank">
+									<span class="toctext">SQL基础语法 </span>
+									</a>
+									<span class="views_show">1 个条目</span>
+								</li>
+																<li>
+									<!-- <span class="tocnumber">10. </span> -->
+									<span class="tocnumber">[Python程序设计] </span>
+									<a href="http://www.nowamagic.net/academy/detail/13281808" target="_blank">
+									<span class="toctext">Django架构流程分析 </span>
+									</a>
+									<span class="views_show">7 个条目</span>
+								</li>
+																<li>
+									<!-- <span class="tocnumber">11. </span> -->
+									<span class="tocnumber">[软件工程与项目管理] </span>
+									<a href="http://www.nowamagic.net/academy/detail/48110805" target="_blank">
+									<span class="toctext">了解一点WebKit </span>
+									</a>
+									<span class="views_show">9 个条目</span>
+								</li>
+																<li>
+									<!-- <span class="tocnumber">12. </span> -->
+									<span class="tocnumber">[PHP程序设计] </span>
+									<a href="http://www.nowamagic.net/academy/detail/1204003" target="_blank">
+									<span class="toctext">PHP数组探索 </span>
+									</a>
+									<span class="views_show">4 个条目</span>
+								</li>
+													</ol>
+				</div>
+				<div class="y_sep"></div>
+				
+								
+				<div class="title">
+					<!-- <span><a href="#">更多 <i class="icon-chevron-right"></i><i class="icon-chevron-right"></i></a></span> -->
+					窗口  -- [协会]				</div>
+				<div class="y_index_window"><a href="http://www.nowamagic.net/librarys/nmra/" target="_blank"><img src="http://www.nowamagic.net/application/views/academy/images/w2.jpg"></a></div>
+				<div class="y_s_box">
+					<ol class="dtree">
+																<li>
+									<!-- <span class="tocnumber">1. </span> -->
+									<a href="http://www.nowamagic.net/librarys/topics/detail/73098" target="_blank">
+									<span class="toctext">口香糖迷药出售 </span>
+									</a>
+									<span class="views_show">0 views</span>
+								</li>
+																<li>
+									<!-- <span class="tocnumber">2. </span> -->
+									<a href="http://www.nowamagic.net/librarys/topics/detail/73097" target="_blank">
+									<span class="toctext">能知道对方底牌的牌技认牌手法《新品大特惠√有买有送》 </span>
+									</a>
+									<span class="views_show">0 views</span>
+								</li>
+																<li>
+									<!-- <span class="tocnumber">3. </span> -->
+									<a href="http://www.nowamagic.net/librarys/topics/detail/73096" target="_blank">
+									<span class="toctext">出售口香糖迷药 </span>
+									</a>
+									<span class="views_show">0 views</span>
+								</li>
+																<li>
+									<!-- <span class="tocnumber">4. </span> -->
+									<a href="http://www.nowamagic.net/librarys/topics/detail/73095" target="_blank">
+									<span class="toctext">口香糖迷药购买 </span>
+									</a>
+									<span class="views_show">0 views</span>
+								</li>
+																<li>
+									<!-- <span class="tocnumber">5. </span> -->
+									<a href="http://www.nowamagic.net/librarys/topics/detail/73094" target="_blank">
+									<span class="toctext">购买口香糖迷药 </span>
+									</a>
+									<span class="views_show">0 views</span>
+								</li>
+																<li>
+									<!-- <span class="tocnumber">6. </span> -->
+									<a href="http://www.nowamagic.net/librarys/topics/detail/73093" target="_blank">
+									<span class="toctext">天津哪里有苹果扑克分析仪《新品大特惠√有买有送》 </span>
+									</a>
+									<span class="views_show">0 views</span>
+								</li>
+																<li>
+									<!-- <span class="tocnumber">7. </span> -->
+									<a href="http://www.nowamagic.net/librarys/topics/detail/73092" target="_blank">
+									<span class="toctext">喷雾口香糖迷药 </span>
+									</a>
+									<span class="views_show">0 views</span>
+								</li>
+																<li>
+									<!-- <span class="tocnumber">8. </span> -->
+									<a href="http://www.nowamagic.net/librarys/topics/detail/73091" target="_blank">
+									<span class="toctext">口服口香糖迷药 </span>
+									</a>
+									<span class="views_show">0 views</span>
+								</li>
+																<li>
+									<!-- <span class="tocnumber">9. </span> -->
+									<a href="http://www.nowamagic.net/librarys/topics/detail/73090" target="_blank">
+									<span class="toctext">扑克金花变牌器《新品大特惠√有买有送》 </span>
+									</a>
+									<span class="views_show">0 views</span>
+								</li>
+																<li>
+									<!-- <span class="tocnumber">10. </span> -->
+									<a href="http://www.nowamagic.net/librarys/topics/detail/73089" target="_blank">
+									<span class="toctext">外用口香糖迷药 </span>
+									</a>
+									<span class="views_show">0 views</span>
+								</li>
+																<li>
+									<!-- <span class="tocnumber">11. </span> -->
+									<a href="http://www.nowamagic.net/librarys/topics/detail/73088" target="_blank">
+									<span class="toctext">挥发型口香糖迷药 </span>
+									</a>
+									<span class="views_show">0 views</span>
+								</li>
+																<li>
+									<!-- <span class="tocnumber">12. </span> -->
+									<a href="http://www.nowamagic.net/librarys/topics/detail/73087" target="_blank">
+									<span class="toctext">安徽牌九单人操作电脑分析仪《新品大特惠√有买有送》 </span>
+									</a>
+									<span class="views_show">0 views</span>
+								</li>
+													</ol>
+				</div>
+				<div class="y_sep"></div>
+				
+				<div style="margin-top:12px;">
+				</div>
+				<div class="y_s_box">
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-3908995730077629";
+/* eight */
+google_ad_slot = "3234186240";
+google_ad_width = 250;
+google_ad_height = 250;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>				</div>
+				<div class="y_sep"></div>
+				
+				<!--
+				<div class="title">魔法达人</div>
+				<div class="y_s_box float clearfix">
+					<div class="l_s_box clearfix">
+						<div class="img"><a href="http://user.yeeyan.org/u/25987"><img title="Fz" style="width:50px;height:50px;" src="http://cdn.yeeyan.com/icon/25987.jpg"></a></div>
+						<div class="r">
+							<div class="t"><a href="http://user.yeeyan.org/u/25987">Fz</a></div>
+							<div class="i">粉丝：286</div>
+						</div>
+					</div>
+				</div>
+				-->
+			</div>
+
+			
+		</div>
+		<div class="clear"></div>
+	</div>
+	<div class="clear"></div>
+</div>
+</div>
+
+	<div class="layout-main-footer">
+		<div class="container_12">
+			<div class="grid_6">
+				<ul class="menu">
+					<li class="main">关注学院
+						<ul class="sub">
+							<li><a href="http://t.qq.com/gonnsai" target="_blank" rel="nofollow">简明现代魔法@腾讯</a></li>
+							<li><a href="http://weibo.com/u/2809746632" target="_blank" rel="nofollow">简明现代魔法@新浪</a></li>
+							<li><a href="#">RSS订阅</a></li>
+						</ul>
+					</li>
+					<li class="main">联系我们
+						<ul class="sub">
+							<li><a href="#">意见建议</a></li>
+							<li><a href="#">汇报BUG</a></li>
+							<li><a href="#">合作事项</a></li>
+						</ul>
+					</li>
+					<li class="main">使用帮助
+						<ul class="sub">
+							<li><a href="#">站内地图</a></li>
+							<li><a href="#">测试页面</a></li>
+							<li><a href="#">文档保存计划</a></li>
+						</ul>
+					</li>
+					
+					<li class="main">其它
+						<ul class="sub">
+							<li><a href="#">隐私权政策</a></li>
+							<li><a href="#">免责声明</a></li>
+							<li><a href="#">关于魔法学院</a></li>
+						</ul>
+					</li>
+					<li class="main">支持本站
+						<ul class="sub">
+							<li><a href="#">传播魔法学院</a></li>
+							<li><a href="http://www.nowamagic.net/academy/donation/" target="_blank" rel="nofollow">捐赠</a></li>
+						</ul>
+					</li>
+					
+				</ul>
+			</div>
+			<div class="grid_1">&nbsp;</div>
+			<div class="grid_5">
+				<h3>关于学院</h3>
+				<ul class="g-list-none supporters">
+					<li>“现代魔法学院”是 <a href="http://www.nowamagic.net/" target="_blank">简明现代魔法</a> 将计算机科学知识<u>系统化</u>的一个尝试，目标是通过简单易懂，诙谐有趣的文字，让用户能够一次性地接触系统化的结构知识，轻松建立起自己的知识体系。</li>
+					<li>任何人都可以轻易地建立任何形式的网站，唯一能区分的地方在于理念。魔法学院的理念是，学习是为了探索这个世界的本质。让我们把学习回归到最质朴、最纯净的状态——满足人类对未知世界的求知欲。宇宙那么大，我们没弄懂的事情还多着呢。</li>
+				</ul>
+			</div>
+			<div class="clear"></div>
+			<div class="grid_12 copyright">
+				<!--
+				<ul class="social">
+					<li class="twitter"><a href="http://twitter.com/yiiframework" target="_blank" rel="nofollow" title="follow us on twitter">Twitter</a></li>
+					<li class="facebook"><a href="http://www.facebook.com/group.php?gid=61355672149" target="_blank" rel="nofollow" title="join yii group at facebook">Facebook</a></li>
+					<li class="linkedin"><a href="http://www.linkedin.com/groups?gid=1483367" target="_blank" rel="nofollow" title="join yii group at linkedin">LinkedIn</a></li>
+					<li class="feeds"><a title="RSS feeds" href="/rss.xml/">RSS Feeds</a></li>
+				</ul>
+				-->
+				<div class="clear"></div>
+				<a href="#">服务条款</a> | <a href="#">关于我们</a> | <a href="#">联系我们</a><br/>
+				Copyright &copy; 2017 by <a href="http://www.nowamagic.net/">nowamagic.net</a>.
+				All Rights Reserved. ♥ Do have faith in what you're doing. 
+				<br />真正的知识，是难以获取的珍宝。正因为难以获取，他的价值就弥足珍贵，值得我们长途跋涉。
+				</div>
+			<div class="clear"></div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+<!--
+if (top.location != self.location)top.location=self.location;
+// -->
+</script>
+
+
+
+<script type="text/javascript">
+if (document.domain != 'nowamagic.net' && document.domain != 'www.nowamagic.net'){
+	window.location.href='http://www.nowamagic.net/';
+}
+</script>
+
+
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-15029466-1");
+pageTracker._trackPageview();
+} catch(err) {}
+</script>
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F455016d55845a0327f490f4814b7d329' type='text/javascript'%3E%3C/script%3E"));
+</script>
+</body>
+</html>

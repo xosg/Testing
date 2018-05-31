@@ -1,0 +1,366 @@
+
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>[python爬虫] 爬取图片无法打开或已损坏的简单探讨 - Eastmount - 博客园</title>
+<link type="text/css" rel="stylesheet" href="/bundles/blog-common.css?v=m_FXmwz3wxZoecUwNEK23PAzc-j9vbX_C6MblJ5ouMc1"/>
+<link id="MainCss" type="text/css" rel="stylesheet" href="/skins/Banlieue13/bundle-Banlieue13.css?v=-BwbBCgL4I6ev4eT0WChGlx86DuTjkHbdqzbBDeklxs1"/>
+<link id="mobile-style" media="only screen and (max-width: 768px)" type="text/css" rel="stylesheet" href="/skins/Banlieue13/bundle-Banlieue13-mobile.css?v=LLOUrXwmlRChZzMSxpUNhll94BzYKBQfghKRfJhsR-w1"/>
+<link title="RSS" type="application/rss+xml" rel="alternate" href="http://www.cnblogs.com/eastmount/rss"/>
+<link title="RSD" type="application/rsd+xml" rel="EditURI" href="http://www.cnblogs.com/eastmount/rsd.xml"/>
+<link type="application/wlwmanifest+xml" rel="wlwmanifest" href="http://www.cnblogs.com/eastmount/wlwmanifest.xml"/>
+<script src="//common.cnblogs.com/script/jquery.js" type="text/javascript"></script>  
+<script type="text/javascript">var currentBlogApp = 'eastmount', cb_enable_mathjax=false;var isLogined=true;</script>
+<script src="/bundles/blog-common.js?v=E1-LyrzANB2jbN9omtnpOHx3eU0Kt3DyislfhU0b5p81" type="text/javascript"></script>
+</head>
+<body>
+<a name="top"></a>
+
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+	<a id="lnkBlogLogo" href="http://www.cnblogs.com/eastmount/"><img id="blogLogo" src="/Skins/custom/images/logo.gif" alt="返回主页" /></a>			
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle" href="http://www.cnblogs.com/eastmount/">Eastmount</a></h1>
+<h2></h2>
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		<div id="navigator">
+			
+<ul id="navList">
+	<li><a id="blog_nav_sitehome" class="menu" href="http://www.cnblogs.com/">博客园</a></li>
+	<li><a id="blog_nav_myhome" class="menu" href="http://www.cnblogs.com/eastmount/">首页</a></li>
+	<li><a id="blog_nav_newpost" class="menu" rel="nofollow" href="https://i.cnblogs.com/EditPosts.aspx?opt=1">新随笔</a></li>
+	<li><a id="blog_nav_contact" accesskey="9" class="menu" rel="nofollow" href="https://msg.cnblogs.com/send/Eastmount">联系</a></li>
+	<li><a id="blog_nav_admin" class="menu" rel="nofollow" href="https://i.cnblogs.com/">管理</a></li>
+	<li><a id="blog_nav_rss" class="menu" href="http://www.cnblogs.com/eastmount/rss">订阅</a>
+	<a id="blog_nav_rss_image" class="aHeaderXML" href="http://www.cnblogs.com/eastmount/rss"><img src="//www.cnblogs.com/images/xml.gif" alt="订阅" /></a></li>
+</ul>
+
+
+			<div class="blogStats">
+				
+				<div id="blog_stats">
+<!--done-->
+随笔- 16&nbsp;
+文章- 0&nbsp;
+评论- 9&nbsp;
+</div>
+				
+			</div><!--end: blogStats -->
+		</div><!--end: navigator 博客导航栏 -->
+		
+<div id="post_detail">
+<!--done-->
+<div id="topics">
+	<div class = "post">
+		<h1 class = "postTitle">
+			<a id="cb_post_title_url" class="postTitle2" href="http://www.cnblogs.com/eastmount/p/5055908.html">[python爬虫] 爬取图片无法打开或已损坏的简单探讨</a>
+		</h1>
+		<div class="clear"></div>
+		<div class="postBody">
+			<div id="cnblogs_post_body"><p><span style="font-family: 'Microsoft YaHei'; font-size: 16px;">&nbsp; &nbsp; &nbsp; &nbsp; 本文主要针对python使用urlretrieve或urlopen下载百度、搜狗、googto（谷歌镜像）等图片时，出现"无法打开图片或已损坏"的问题，作者对它进行简单的探讨。同时，作者将进一步帮你巩固selenium自动化操作和urllib库等知识。</span><br /><span style="font-family: 'Microsoft YaHei'; font-size: 16px;">&nbsp; &nbsp; &nbsp; &nbsp; 感谢朋友"露为霜"的帮助！希望以后能实现强大的图片爬虫代码~</span><br /><br /></p>
+<h2><span style="color: #0000ff; font-size: 18pt;">一. 引入Selenium自动爬取百度图片</span></h2>
+<p><span style="font-size: 16px; font-family: 'Microsoft YaHei';">&nbsp; &nbsp; &nbsp; &nbsp; 下面这部分Selenium代码的主要功能是：</span><br /><span style="font-size: 16px; font-family: 'Microsoft YaHei';">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;1.先自动运行浏览器，并访问百度图片链接：<a href="http://image.baidu.com/" target="_blank">http://image.baidu.com/</a></span><br /><span style="font-size: 16px; font-family: 'Microsoft YaHei';">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;2.通过driver.find_element_by_xpath()函数获取输入框的位置；</span><br /><span style="font-size: 16px; font-family: 'Microsoft YaHei';">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 3.在输入框中自动输入搜索关键词"邓肯"，再输入回车搜索"邓肯"相关图片；</span><br /><span style="font-size: 16px; font-family: 'Microsoft YaHei';">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 4.再通过find_element_by_xpath()获取图片的原图url，这里仅获取一张图片；</span><br /><span style="font-size: 16px; font-family: 'Microsoft YaHei';">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;5.调用urllib的urlretrieve()函数下载图片。</span><br /><span style="font-size: 16px; font-family: 'Microsoft YaHei';">&nbsp; &nbsp; &nbsp; &nbsp; 最后整个动态效果如下图所示，但是图片却无法显示：</span></p>
+<div><img style="display: block; margin-left: auto; margin-right: auto;" src="http://img.blog.csdn.net/20151207005223353" alt="" /></div>
+<p>
+<br /><span style="font-family: 'Microsoft YaHei'; font-size: 16px;">&nbsp; &nbsp; &nbsp; &nbsp; 代码如下：</span></p>
+<div class="cnblogs_code">
+<pre><span style="color: #008080;"> 1</span> <span style="color: #008000;">#</span><span style="color: #008000;"> -*- coding: utf-8 -*-</span>
+<span style="color: #008080;"> 2</span> <span style="color: #0000ff;">import</span><span style="color: #000000;"> urllib
+</span><span style="color: #008080;"> 3</span> <span style="color: #0000ff;">import</span><span style="color: #000000;"> re
+</span><span style="color: #008080;"> 4</span> <span style="color: #0000ff;">import</span><span style="color: #000000;"> time
+</span><span style="color: #008080;"> 5</span> <span style="color: #0000ff;">import</span><span style="color: #000000;"> os
+</span><span style="color: #008080;"> 6</span> <span style="color: #0000ff;">from</span> selenium <span style="color: #0000ff;">import</span><span style="color: #000000;"> webdriver          
+</span><span style="color: #008080;"> 7</span> <span style="color: #0000ff;">from</span> selenium.webdriver.common.keys <span style="color: #0000ff;">import</span><span style="color: #000000;"> Keys 
+</span><span style="color: #008080;"> 8</span> <span style="color: #0000ff;">import</span><span style="color: #000000;"> selenium.webdriver.support.ui as ui
+</span><span style="color: #008080;"> 9</span> <span style="color: #0000ff;">from</span> selenium.webdriver.common.action_chains <span style="color: #0000ff;">import</span><span style="color: #000000;"> ActionChains         
+</span><span style="color: #008080;">10</span> 
+<span style="color: #008080;">11</span> <span style="color: #008000;">#</span><span style="color: #008000;">Open PhantomJS</span>
+<span style="color: #008080;">12</span> <span style="color: #008000;">#</span><span style="color: #008000;">driver = webdriver.PhantomJS(executable_path="G:\phantomjs-1.9.1-windows\phantomjs.exe")  </span>
+<span style="color: #008080;">13</span> driver =<span style="color: #000000;"> webdriver.Firefox() 
+</span><span style="color: #008080;">14</span> wait = ui.WebDriverWait(driver,10<span style="color: #000000;">)
+</span><span style="color: #008080;">15</span> 
+<span style="color: #008080;">16</span> <span style="color: #008000;">#</span><span style="color: #008000;">Search Picture By Baidu</span>
+<span style="color: #008080;">17</span> url = <span style="color: #800000;">"</span><span style="color: #800000;">http://image.baidu.com/</span><span style="color: #800000;">"</span>
+<span style="color: #008080;">18</span> name = u<span style="color: #800000;">"</span><span style="color: #800000;">邓肯</span><span style="color: #800000;">"</span>
+<span style="color: #008080;">19</span> <span style="color: #000000;">driver.get(url)
+</span><span style="color: #008080;">20</span> elem_inp = driver.find_element_by_xpath(<span style="color: #800000;">"</span><span style="color: #800000;">//form[@id='homeSearchForm']/span[1]/input</span><span style="color: #800000;">"</span><span style="color: #000000;">)  
+</span><span style="color: #008080;">21</span> <span style="color: #000000;">elem_inp.send_keys(name)  
+</span><span style="color: #008080;">22</span> <span style="color: #000000;">elem_inp.send_keys(Keys.RETURN)
+</span><span style="color: #008080;">23</span> time.sleep(5<span style="color: #000000;">)
+</span><span style="color: #008080;">24</span> 
+<span style="color: #008080;">25</span> <span style="color: #008000;">#</span><span style="color: #008000;">Get the URL of Pictures</span>
+<span style="color: #008080;">26</span> <span style="color: #008000;">#</span><span style="color: #008000;">elem_pic = driver.find_element_by_xpath("//div[@class='imgpage']/ul/li/div/a")</span>
+<span style="color: #008080;">27</span> elem_pic = driver.find_element_by_xpath(<span style="color: #800000;">"</span><span style="color: #800000;">//div[@class='imgpage']/ul/li/div/a/img</span><span style="color: #800000;">"</span><span style="color: #000000;">)
+</span><span style="color: #008080;">28</span> elem_url = elem_pic.get_attribute(<span style="color: #800000;">"</span><span style="color: #800000;">src</span><span style="color: #800000;">"</span><span style="color: #000000;">)
+</span><span style="color: #008080;">29</span> <span style="color: #0000ff;">print</span><span style="color: #000000;"> elem_url
+</span><span style="color: #008080;">30</span> 
+<span style="color: #008080;">31</span> <span style="color: #008000;">#</span><span style="color: #008000;">Download Pictures</span>
+<span style="color: #008080;">32</span> <span style="color: #000000;">driver.get(elem_url)
+</span><span style="color: #008080;">33</span> urllib.urlretrieve(elem_url,<span style="color: #800000;">"</span><span style="color: #800000;">picture.jpg</span><span style="color: #800000;">"</span><span style="color: #000000;">)
+</span><span style="color: #008080;">34</span> <span style="color: #0000ff;">print</span> <span style="color: #800000;">"</span><span style="color: #800000;">Download Pictures!!!</span><span style="color: #800000;">"</span></pre>
+</div>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><span style="font-size: 18pt; color: #0000ff;">二. 简单分析原因及知识巩固</span></h2>
+<p><span style="font-family: 'Microsoft YaHei'; font-size: 16px;">&nbsp; &nbsp; &nbsp; &nbsp;1.urllib.urlretrieve()</span><br /><span style="font-family: 'Microsoft YaHei'; font-size: 16px;">&nbsp; &nbsp; &nbsp; &nbsp;通过urlretrieve()函数可设置下载进度发现图片是一下子就加载的。这里给大家巩固这个urlretrieve函数的方法和Python时间命名方式，代码如下：</span></p>
+<p>&nbsp;</p>
+<div class="cnblogs_code">
+<pre><span style="color: #008080;"> 1</span> <span style="color: #008000;">#</span><span style="color: #008000;"> -*- coding: utf-8 -*-</span>
+<span style="color: #008080;"> 2</span> <span style="color: #0000ff;">import</span><span style="color: #000000;"> urllib
+</span><span style="color: #008080;"> 3</span> <span style="color: #0000ff;">import</span><span style="color: #000000;"> time
+</span><span style="color: #008080;"> 4</span> <span style="color: #0000ff;">import</span><span style="color: #000000;"> os
+</span><span style="color: #008080;"> 5</span> 
+<span style="color: #008080;"> 6</span> <span style="color: #008000;">#</span><span style="color: #008000;">显示下载进度</span>
+<span style="color: #008080;"> 7</span> <span style="color: #0000ff;">def</span><span style="color: #000000;"> schedule(a,b,c):
+</span><span style="color: #008080;"> 8</span>     <span style="color: #008000;">#</span><span style="color: #008000;">a:已下载的数据块 b:数据块的大小 c:远程文件的大小</span>
+<span style="color: #008080;"> 9</span>     per = 100.0 * a * b /<span style="color: #000000;"> c
+</span><span style="color: #008080;">10</span>     <span style="color: #0000ff;">if</span> per &gt; 100<span style="color: #000000;"> :
+</span><span style="color: #008080;">11</span>         per = 100
+<span style="color: #008080;">12</span>     <span style="color: #0000ff;">print</span> <span style="color: #800000;">'</span><span style="color: #800000;">%.2f%%</span><span style="color: #800000;">'</span> %<span style="color: #000000;"> per
+</span><span style="color: #008080;">13</span> 
+<span style="color: #008080;">14</span> <span style="color: #0000ff;">if</span> <span style="color: #800080;">__name__</span> == <span style="color: #800000;">'</span><span style="color: #800000;">__main__</span><span style="color: #800000;">'</span><span style="color: #000000;">:
+</span><span style="color: #008080;">15</span>     url = <span style="color: #800000;">"</span><span style="color: #800000;">http://img4.imgtn.bdimg.com/it/u=3459898135,859507693&amp;fm=11&amp;gp=0.jpg</span><span style="color: #800000;">"</span>
+<span style="color: #008080;">16</span>     <span style="color: #008000;">#</span><span style="color: #008000;">定义文件名 时间命名</span>
+<span style="color: #008080;">17</span>     t =<span style="color: #000000;"> time.localtime(time.time())
+</span><span style="color: #008080;">18</span>     <span style="color: #008000;">#</span><span style="color: #008000;">反斜杠连接多行</span>
+<span style="color: #008080;">19</span>     filename = str(t.<span style="color: #800080;">__getattribute__</span>(<span style="color: #800000;">"</span><span style="color: #800000;">tm_year</span><span style="color: #800000;">"</span>)) + <span style="color: #800000;">"</span><span style="color: #800000;">_</span><span style="color: #800000;">"</span> +<span style="color: #000000;"> \
+</span><span style="color: #008080;">20</span>                str(t.<span style="color: #800080;">__getattribute__</span>(<span style="color: #800000;">"</span><span style="color: #800000;">tm_mon</span><span style="color: #800000;">"</span>)) + <span style="color: #800000;">"</span><span style="color: #800000;">_</span><span style="color: #800000;">"</span> +<span style="color: #000000;"> \
+</span><span style="color: #008080;">21</span>                str(t.<span style="color: #800080;">__getattribute__</span>(<span style="color: #800000;">"</span><span style="color: #800000;">tm_mday</span><span style="color: #800000;">"</span><span style="color: #000000;">))
+</span><span style="color: #008080;">22</span>     target = <span style="color: #800000;">"</span><span style="color: #800000;">%s.jpg</span><span style="color: #800000;">"</span> %<span style="color: #000000;"> filename
+</span><span style="color: #008080;">23</span>     <span style="color: #0000ff;">print</span><span style="color: #000000;"> target
+</span><span style="color: #008080;">24</span> <span style="color: #000000;">    urllib.urlretrieve(url,target,schedule)
+</span><span style="color: #008080;">25</span>     <span style="color: #0000ff;">print</span> <span style="color: #800000;">"</span><span style="color: #800000;">Download Picture!!!</span><span style="color: #800000;">"</span></pre>
+</div>
+<p><span style="font-family: 'Microsoft YaHei'; font-size: 16px;">&nbsp; &nbsp; &nbsp; &nbsp; 发现该图片的大小仅为168字节，其中输出结果如下图，获取的URL地址如下：</span><br /><span style="font-family: 'Microsoft YaHei'; font-size: 16px;"><a href="http://img4.imgtn.bdimg.com/it/u=3459898135,859507693&amp;fm=11&amp;gp=0.jpg" target="_blank">http://img4.imgtn.bdimg.com/it/u=3459898135,859507693&amp;fm=11&amp;gp=0.jpg</a>&nbsp;</span><br /><span style="font-family: 'Microsoft YaHei'; font-size: 16px;">而换张图片是能显示下载进度的，如我的头像。显然我想让程序加个进度就能爬取图片的想法失败。头像地址：<a href="http://avatar.csdn.net/F/8/5/1_eastmount.jpg" target="_blank">http://avatar.csdn.net/F/8/5/1_eastmount.jpg</a></span></p>
+<div><img style="display: block; margin-left: auto; margin-right: auto;" src="http://img.blog.csdn.net/20151207015652175" alt="" /></div>
+<p><span style="font-family: 'Microsoft YaHei'; font-size: 16px;">&nbsp; &nbsp; &nbsp; &nbsp; 猜测可能获取的百度URL不是原图地址，或者是个服务器设置了相应的拦截或加密。参考"<a href="http://blog.csdn.net/cruise_h/article/details/25737737" target="_blank">Python爬虫抓取网页图片</a>"，函数相关介绍如下：</span></p>
+<div class="cnblogs_code">
+<pre>&gt;&gt;&gt;<span style="color: #000000;"> help(urllib.urlretrieve)
+Help on function urlretrieve </span><span style="color: #0000ff;">in</span><span style="color: #000000;"> module urllib:
+urlretrieve(url, filename</span>=None, reporthook=None, data=<span style="color: #000000;">None)
+
+参数url：
+    指定的下载路径
+参数 finename：
+    指定了保存本地路径（如果参数未指定，urllib会生成一个临时文件保存数据。）
+参数 reporthook：
+    是一个回调函数，当连接上服务器、以及相应的数据块传输完毕时会触发该回调，
+    我们可以利用这个回调函数来显示当前的下载进度。
+参数 data：
+    指 post 到服务器的数据，该方法返回一个包含两个元素的(filename, headers)元组，
+    filename 表示保存到本地的路径，header 表示服务器的响应头。</span></pre>
+</div>
+<p>&nbsp;</p>
+<p><span style="font-family: 'Microsoft YaHei'; font-size: 16px;">&nbsp; &nbsp; &nbsp; &nbsp;2.urllib2.urlopen()</span><br /><span style="font-family: 'Microsoft YaHei'; font-size: 16px;">&nbsp; &nbsp; &nbsp; &nbsp;换个方法urlopen()实现，同时设置消息头试试，并输出信息和图片大小。</span></p>
+<div class="cnblogs_code">
+<pre><span style="color: #008080;"> 1</span> <span style="color: #008000;">#</span><span style="color: #008000;"> -*- coding: utf-8 -*-</span>
+<span style="color: #008080;"> 2</span> <span style="color: #0000ff;">import</span><span style="color: #000000;"> os      
+</span><span style="color: #008080;"> 3</span> <span style="color: #0000ff;">import</span><span style="color: #000000;"> sys    
+</span><span style="color: #008080;"> 4</span> <span style="color: #0000ff;">import</span><span style="color: #000000;"> urllib
+</span><span style="color: #008080;"> 5</span> <span style="color: #0000ff;">import</span><span style="color: #000000;"> urllib2
+</span><span style="color: #008080;"> 6</span> 
+<span style="color: #008080;"> 7</span> <span style="color: #008000;">#</span><span style="color: #008000;">设置消息头</span>
+<span style="color: #008080;"> 8</span> url = <span style="color: #800000;">"</span><span style="color: #800000;">http://img4.imgtn.bdimg.com/it/u=3459898135,859507693&amp;fm=11&amp;gp=0.jpg</span><span style="color: #800000;">"</span>
+<span style="color: #008080;"> 9</span> header =<span style="color: #000000;"> {
+</span><span style="color: #008080;">10</span>     <span style="color: #800000;">'</span><span style="color: #800000;">User-Agent</span><span style="color: #800000;">'</span>: <span style="color: #800000;">'</span><span style="color: #800000;">Mozilla/5.0 (Windows NT 6.1; WOW64) \
+</span><span style="color: #008080;">11</span> <span style="color: #800000;">        AppleWebKit/537.36 (KHTML, like Gecko) \
+</span><span style="color: #008080;">12</span> <span style="color: #800000;">        Chrome/35.0.1916.114 Safari/537.36</span><span style="color: #800000;">'</span><span style="color: #000000;">,
+</span><span style="color: #008080;">13</span>     <span style="color: #800000;">'</span><span style="color: #800000;">Cookie</span><span style="color: #800000;">'</span>: <span style="color: #800000;">'</span><span style="color: #800000;">AspxAutoDetectCookieSupport=1</span><span style="color: #800000;">'</span>
+<span style="color: #008080;">14</span> <span style="color: #000000;">}
+</span><span style="color: #008080;">15</span> request =<span style="color: #000000;"> urllib2.Request(url, None, header)
+</span><span style="color: #008080;">16</span> response =<span style="color: #000000;"> urllib2.urlopen(request)
+</span><span style="color: #008080;">17</span> <span style="color: #0000ff;">print</span> response.headers[<span style="color: #800000;">'</span><span style="color: #800000;">Content-Length</span><span style="color: #800000;">'</span><span style="color: #000000;">]
+</span><span style="color: #008080;">18</span> 
+<span style="color: #008080;">19</span> with open(<span style="color: #800000;">"</span><span style="color: #800000;">picture.jpg</span><span style="color: #800000;">"</span>,<span style="color: #800000;">"</span><span style="color: #800000;">wb</span><span style="color: #800000;">"</span><span style="color: #000000;">) as f:
+</span><span style="color: #008080;">20</span> <span style="color: #000000;">    f.write(response.read())
+</span><span style="color: #008080;">21</span> <span style="color: #0000ff;">print</span><span style="color: #000000;"> response.geturl()
+</span><span style="color: #008080;">22</span> <span style="color: #0000ff;">print</span> response.info()    <span style="color: #008000;">#</span><span style="color: #008000;">返回报文头信息</span>
+<span style="color: #008080;">23</span> <span style="color: #0000ff;">print</span> urllib2.urlopen(url).read()</pre>
+</div>
+<p><span style="font-family: 'Microsoft YaHei'; font-size: 16px;">&nbsp; &nbsp; &nbsp; &nbsp; 返回内容是&rdquo;HTTPError: HTTP Error 403: Forbidden&ldquo;，Selenium打开如下：</span></p>
+<p><img style="display: block; margin-left: auto; margin-right: auto;" src="http://img.blog.csdn.net/20151207035654008" alt="" width="500" height="300" /></p>
+<p><span style="font-family: 'Microsoft YaHei'; font-size: 16px;">&nbsp; &nbsp; &nbsp; &nbsp; 其中403错误介绍如下，服务器拒绝服务：</span></p>
+<p><img style="display: block; margin-left: auto; margin-right: auto;" src="http://img.blog.csdn.net/20151207035756661" alt="" width="600" height="400" /></p>
+<p><span style="font-family: 'Microsoft YaHei'; font-size: 16px;">&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;换成我的博客图像那张图是能下载的，同时设置消息头和代理，推荐一篇文章：</span><br /><span style="font-family: 'Microsoft YaHei'; font-size: 16px;">&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<a href="http://blog.csdn.net/pleasecallmewhy/article/details/8925978" target="_blank">[Python]网络爬虫（五）：urllib2的使用细节与抓站技巧</a></span></p>
+<p><span style="font-family: 'Microsoft YaHei'; font-size: 16px;">&nbsp;</span></p>
+<h2><span style="font-size: 18pt; color: #0000ff;">三. 解决方法</span></h2>
+<p><span style="font-family: 'Microsoft YaHei'; font-size: 16px;">&nbsp; &nbsp; &nbsp; &nbsp; 主要参考三篇文章和自己的一些想法：</span><br /><span style="font-family: 'Microsoft YaHei'; font-size: 16px;">&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<a href="http://blog.csdn.net/seanwang_25/article/details/43318907" target="_blank">selenium+python 爬取网络图片(2) -- 百度</a></span><br /><span style="font-family: 'Microsoft YaHei'; font-size: 16px;">&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<a href="http://lovenight.github.io/2015/11/15/Python-3-%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8B%E8%BD%BD%E7%99%BE%E5%BA%A6%E5%9B%BE%E7%89%87%E6%90%9C%E7%B4%A2%E7%BB%93%E6%9E%9C/" target="_blank">Python 3 多线程下载百度图片搜索结果</a></span><br /><span style="font-family: 'Microsoft YaHei'; font-size: 16px;">&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<a href="http://write.blog.csdn.net/postedit/blog.csdn.net/sunboy_2050/article/details/50095929" target="_blank">CSDN博客搬家到WordPress &nbsp;- curl设置headers爬取</a></span><br /><br /><span style="font-family: 'Microsoft YaHei'; font-size: 16px;">&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;第一个方法 F12审查元素和SRC的骗局</span><br /><span style="font-family: 'Microsoft YaHei'; font-size: 16px;">&nbsp; &nbsp; &nbsp; &nbsp; 这是感谢"露为霜"同学提供的方法，如果你通过浏览器点开百度搜索"邓肯"的第一张图片，复制网址后，会发现图片真实的地址为：</span><br /><span style="font-family: 'Microsoft YaHei'; font-size: 16px;">&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<a href="http://gb.cri.cn/mmsource/images/2015/11/22/sb2015112200073.jpg" target="_blank">http://gb.cri.cn/mmsource/images/2015/11/22/sb2015112200073.jpg</a></span><br /><span style="font-family: 'Microsoft YaHei'; font-size: 16px;">&nbsp; &nbsp; &nbsp; &nbsp; 此时你再分析百度搜索页面，你会发现"F12审查元素和获取src元素的行为欺骗了你"，正是因为它俩定位到了错误的图片链接。而真实的URL是在"ul/li/"中的"data-objurl"属性中。</span><br /><img style="display: block; margin-left: auto; margin-right: auto;" src="http://img.blog.csdn.net/20151207051701675" alt="" /><br /><span style="font-family: 'Microsoft YaHei'; font-size: 16px;">&nbsp; &nbsp; &nbsp; &nbsp; 代码如下：</span></p>
+<div class="cnblogs_code">
+<pre><span style="color: #008080;"> 1</span> <span style="color: #008000;">#</span><span style="color: #008000;"> -*- coding: utf-8 -*-</span>
+<span style="color: #008080;"> 2</span> <span style="color: #0000ff;">import</span><span style="color: #000000;"> urllib
+</span><span style="color: #008080;"> 3</span> <span style="color: #0000ff;">import</span><span style="color: #000000;"> re
+</span><span style="color: #008080;"> 4</span> <span style="color: #0000ff;">import</span><span style="color: #000000;"> time
+</span><span style="color: #008080;"> 5</span> <span style="color: #0000ff;">import</span><span style="color: #000000;"> os
+</span><span style="color: #008080;"> 6</span> <span style="color: #0000ff;">from</span> selenium <span style="color: #0000ff;">import</span><span style="color: #000000;"> webdriver          
+</span><span style="color: #008080;"> 7</span> <span style="color: #0000ff;">from</span> selenium.webdriver.common.keys <span style="color: #0000ff;">import</span><span style="color: #000000;"> Keys
+</span><span style="color: #008080;"> 8</span> <span style="color: #0000ff;">import</span><span style="color: #000000;"> selenium.webdriver.support.ui as ui        
+</span><span style="color: #008080;"> 9</span> <span style="color: #0000ff;">from</span> selenium.webdriver.common.action_chains <span style="color: #0000ff;">import</span><span style="color: #000000;"> ActionChains
+</span><span style="color: #008080;">10</span> 
+<span style="color: #008080;">11</span> <span style="color: #008000;">#</span><span style="color: #008000;">Open PhantomJS</span>
+<span style="color: #008080;">12</span> <span style="color: #008000;">#</span><span style="color: #008000;">driver = webdriver.PhantomJS(executable_path="G:\phantomjs-1.9.1-windows\phantomjs.exe")  </span>
+<span style="color: #008080;">13</span> driver =<span style="color: #000000;"> webdriver.Firefox() 
+</span><span style="color: #008080;">14</span> wait = ui.WebDriverWait(driver,10<span style="color: #000000;">)
+</span><span style="color: #008080;">15</span> 
+<span style="color: #008080;">16</span> <span style="color: #008000;">#</span><span style="color: #008000;">Search Picture By Baidu</span>
+<span style="color: #008080;">17</span> url = <span style="color: #800000;">"</span><span style="color: #800000;">http://image.baidu.com/</span><span style="color: #800000;">"</span>
+<span style="color: #008080;">18</span> name = u<span style="color: #800000;">"</span><span style="color: #800000;">邓肯</span><span style="color: #800000;">"</span>
+<span style="color: #008080;">19</span> <span style="color: #000000;">driver.get(url)
+</span><span style="color: #008080;">20</span> elem_inp = driver.find_element_by_xpath(<span style="color: #800000;">"</span><span style="color: #800000;">//form[@id='homeSearchForm']/span[1]/input</span><span style="color: #800000;">"</span><span style="color: #000000;">)  
+</span><span style="color: #008080;">21</span> <span style="color: #000000;">elem_inp.send_keys(name)  
+</span><span style="color: #008080;">22</span> <span style="color: #000000;">elem_inp.send_keys(Keys.RETURN)
+</span><span style="color: #008080;">23</span> time.sleep(5<span style="color: #000000;">)
+</span><span style="color: #008080;">24</span> 
+<span style="color: #008080;">25</span> <span style="color: #008000;">#</span><span style="color: #008000;">Get the URL of Pictures</span>
+<span style="color: #008080;">26</span> num = 1
+<span style="color: #008080;">27</span> elem_pic = driver.find_elements_by_xpath(<span style="color: #800000;">"</span><span style="color: #800000;">//div[@class='imgpage']/ul/li</span><span style="color: #800000;">"</span><span style="color: #000000;">)
+</span><span style="color: #008080;">28</span> <span style="color: #0000ff;">for</span> elem <span style="color: #0000ff;">in</span><span style="color: #000000;"> elem_pic:
+</span><span style="color: #008080;">29</span>     elem_url = elem.get_attribute(<span style="color: #800000;">"</span><span style="color: #800000;">data-objurl</span><span style="color: #800000;">"</span><span style="color: #000000;">)
+</span><span style="color: #008080;">30</span>     <span style="color: #0000ff;">print</span><span style="color: #000000;"> elem_url
+</span><span style="color: #008080;">31</span>     <span style="color: #008000;">#</span><span style="color: #008000;">Download Pictures</span>
+<span style="color: #008080;">32</span>     name = <span style="color: #800000;">"</span><span style="color: #800000;">%03d</span><span style="color: #800000;">"</span> %<span style="color: #000000;"> num
+</span><span style="color: #008080;">33</span>     urllib.urlretrieve(elem_url, str(name) + <span style="color: #800000;">"</span><span style="color: #800000;">.jpg</span><span style="color: #800000;">"</span><span style="color: #000000;">)
+</span><span style="color: #008080;">34</span>     num = num + 1
+<span style="color: #008080;">35</span> <span style="color: #0000ff;">else</span><span style="color: #000000;">:
+</span><span style="color: #008080;">36</span>     <span style="color: #0000ff;">print</span> <span style="color: #800000;">"</span><span style="color: #800000;">Download Pictures!!!</span><span style="color: #800000;">"</span></pre>
+</div>
+<p><span style="font-family: 'Microsoft YaHei'; font-size: 16px;">&nbsp; &nbsp; &nbsp; &nbsp; 运行代码成功爬取了9张图片，显然成功了！虽然最后报错：IOError: [Errno socket error] [Errno 10060] ，只爬取了9张图片，但是至少可以正确解决了该问题。运行截图如下所示：</span></p>
+<div><img style="display: block; margin-left: auto; margin-right: auto;" src="http://img.blog.csdn.net/20151207051919086" alt="" width="500" height="400" /></div>
+<p><span style="font-family: 'Microsoft YaHei'; font-size: 16px;"> &nbsp; &nbsp; &nbsp; &nbsp; 同样的道理，googto的elem.get_attribute("src")改成elem.get_attribute("data-imgurl")即可获取正确的图片地址并正确下载。</span><br /><span style="font-family: 'Microsoft YaHei'; font-size: 16px;">&nbsp; &nbsp; &nbsp; &nbsp; PS：百度图片动态加载的功能是非常强大的，当你的鼠标拖动时，它会自动增加新的页面，在&lt;ul&gt;中包括新的一批&lt;li&gt;张图片，这也是不同于其它网页在右下角点击"1、2、3..."翻页的，可能也会成为海量图片爬取的又一难点。</span><br /><br /><span style="font-family: 'Microsoft YaHei'; font-size: 16px;">&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;第二个方法 Selenium使用右键另存为</span><br /><span style="font-family: 'Microsoft YaHei'; font-size: 16px;">&nbsp; &nbsp; &nbsp; &nbsp; 还是使用老的链接，虽然读取是无法显示的，但尝试通过Selenium的鼠标右键另存为功能，看能不能爬取成功。</span></p>
+<div class="cnblogs_code">
+<pre><span style="color: #008080;"> 1</span> <span style="color: #008000;">#</span><span style="color: #008000;"> -*- coding: utf-8 -*-</span>
+<span style="color: #008080;"> 2</span> <span style="color: #0000ff;">import</span><span style="color: #000000;"> urllib
+</span><span style="color: #008080;"> 3</span> <span style="color: #0000ff;">import</span><span style="color: #000000;"> re
+</span><span style="color: #008080;"> 4</span> <span style="color: #0000ff;">import</span><span style="color: #000000;"> time
+</span><span style="color: #008080;"> 5</span> <span style="color: #0000ff;">import</span><span style="color: #000000;"> os
+</span><span style="color: #008080;"> 6</span> <span style="color: #0000ff;">from</span> selenium <span style="color: #0000ff;">import</span><span style="color: #000000;"> webdriver          
+</span><span style="color: #008080;"> 7</span> <span style="color: #0000ff;">from</span> selenium.webdriver.common.keys <span style="color: #0000ff;">import</span><span style="color: #000000;"> Keys
+</span><span style="color: #008080;"> 8</span> <span style="color: #0000ff;">import</span><span style="color: #000000;"> selenium.webdriver.support.ui as ui        
+</span><span style="color: #008080;"> 9</span> <span style="color: #0000ff;">from</span> selenium.webdriver.common.action_chains <span style="color: #0000ff;">import</span><span style="color: #000000;"> ActionChains
+</span><span style="color: #008080;">10</span> 
+<span style="color: #008080;">11</span> <span style="color: #008000;">#</span><span style="color: #008000;">Open PhantomJS </span>
+<span style="color: #008080;">12</span> driver =<span style="color: #000000;"> webdriver.Firefox()
+</span><span style="color: #008080;">13</span> wait = ui.WebDriverWait(driver,10<span style="color: #000000;">)
+</span><span style="color: #008080;">14</span> 
+<span style="color: #008080;">15</span> <span style="color: #008000;">#</span><span style="color: #008000;">Search Picture By Baidu</span>
+<span style="color: #008080;">16</span> url = <span style="color: #800000;">"</span><span style="color: #800000;">http://image.baidu.com/</span><span style="color: #800000;">"</span>
+<span style="color: #008080;">17</span> name = u<span style="color: #800000;">"</span><span style="color: #800000;">邓肯</span><span style="color: #800000;">"</span>
+<span style="color: #008080;">18</span> <span style="color: #000000;">driver.get(url)
+</span><span style="color: #008080;">19</span> elem_inp = driver.find_element_by_xpath(<span style="color: #800000;">"</span><span style="color: #800000;">//form[@id='homeSearchForm']/span[1]/input</span><span style="color: #800000;">"</span><span style="color: #000000;">)  
+</span><span style="color: #008080;">20</span> <span style="color: #000000;">elem_inp.send_keys(name)  
+</span><span style="color: #008080;">21</span> <span style="color: #000000;">elem_inp.send_keys(Keys.RETURN)
+</span><span style="color: #008080;">22</span> time.sleep(5<span style="color: #000000;">)
+</span><span style="color: #008080;">23</span> 
+<span style="color: #008080;">24</span> <span style="color: #008000;">#</span><span style="color: #008000;">Get the URL of Pictures</span>
+<span style="color: #008080;">25</span> elem_pic = driver.find_element_by_xpath(<span style="color: #800000;">"</span><span style="color: #800000;">//div[@class='imgpage']/ul/li/div/a/img</span><span style="color: #800000;">"</span><span style="color: #000000;">)
+</span><span style="color: #008080;">26</span> elem_url = elem_pic.get_attribute(<span style="color: #800000;">"</span><span style="color: #800000;">src</span><span style="color: #800000;">"</span><span style="color: #000000;">)
+</span><span style="color: #008080;">27</span> <span style="color: #0000ff;">print</span><span style="color: #000000;"> elem_url
+</span><span style="color: #008080;">28</span> 
+<span style="color: #008080;">29</span> <span style="color: #008000;">#</span><span style="color: #008000;">鼠标移动至图片上 右键保存图片</span>
+<span style="color: #008080;">30</span> <span style="color: #000000;">driver.get(elem_url)
+</span><span style="color: #008080;">31</span> <span style="color: #0000ff;">print</span><span style="color: #000000;"> driver.page_source
+</span><span style="color: #008080;">32</span> elem = driver.find_element_by_xpath(<span style="color: #800000;">"</span><span style="color: #800000;">//img</span><span style="color: #800000;">"</span><span style="color: #000000;">)
+</span><span style="color: #008080;">33</span> action =<span style="color: #000000;"> ActionChains(driver).move_to_element(elem)
+</span><span style="color: #008080;">34</span> action.context_click(elem) <span style="color: #008000;">#</span><span style="color: #008000;">右键  </span>
+<span style="color: #008080;">35</span> 
+<span style="color: #008080;">36</span> <span style="color: #008000;">#</span><span style="color: #008000;">当右键鼠标点击键盘光标向下则移动至右键菜单第一个选项</span>
+<span style="color: #008080;">37</span> <span style="color: #000000;">action.send_keys(Keys.ARROW_DOWN)
+</span><span style="color: #008080;">38</span> action.send_keys(<span style="color: #800000;">'</span><span style="color: #800000;">v</span><span style="color: #800000;">'</span>) <span style="color: #008000;">#</span><span style="color: #008000;">另存为</span>
+<span style="color: #008080;">39</span> <span style="color: #000000;">action.perform()
+</span><span style="color: #008080;">40</span> <span style="color: #0000ff;">print</span> <span style="color: #800000;">"</span><span style="color: #800000;">Download Pictures!!!</span><span style="color: #800000;">"</span></pre>
+</div>
+<p><span style="font-family: 'Microsoft YaHei'; font-size: 16px;">&nbsp; &nbsp; &nbsp; &nbsp; 运行效果如下图所示。虽然它能实现右键另存为，但是需要手动点击保存，其原因是selenium无法操作操作系统级的对话框，又说"set profile"代码段的设置能解决问题的并不靠谱。通过钩子Hook函数可以实现，以前做过C#的钩子自动点击功能，但是想到下载图片需要弹出并点击无数次对话框就很蛋疼，所以该方法并不好！</span><br /><span style="font-family: 'Microsoft YaHei'; font-size: 16px;">&nbsp; &nbsp; &nbsp; &nbsp; 钩子函数java版本结合robot可以阅读下面这篇文章：</span><br /><span style="font-family: 'Microsoft YaHei'; font-size: 16px;">&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<a href="http://www.cnblogs.com/tobecrazy/p/3969390.html" target="_blank">selenium webdriver 右键另存为下载文件（结合robot and autoIt）</a></span><br /><br /></p>
+<div><img style="display: block; margin-left: auto; margin-right: auto;" src="http://img.blog.csdn.net/20151207060517754" alt="" width="350" height="250" />&nbsp;<img style="display: block; margin-left: auto; margin-right: auto;" src="http://img.blog.csdn.net/20151207060545516" alt="" width="350" height="250" /></div>
+<p>
+<br /><span style="font-family: 'Microsoft YaHei'; font-size: 16px;">&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;第三个方法 通过Selenium自动点击百度的下载按钮</span><br /><span style="font-family: 'Microsoft YaHei'; font-size: 16px;">&nbsp; &nbsp; &nbsp; &nbsp; 其实现过程就是通过Selenium找到"下载"按钮，再点击或获取链接即可。</span><br /><span style="font-family: 'Microsoft YaHei'; font-size: 16px;">&nbsp; &nbsp; &nbsp; &nbsp; 该方法参考文章：<a href="http://blog.csdn.net/seanwang_25/article/details/43318907" target="_blank">selenium+python 爬取网络图片(2) -- 百度</a></span><br /><span style="font-family: 'Microsoft YaHei'; font-size: 16px;">&nbsp; &nbsp; &nbsp; &nbsp; 同时，这里需要强调百度动态加载，可以通过Selenium模拟滚动窗口实现，也参考上面文章。其中核心代码为：</span><br /><span style="font-family: 'Microsoft YaHei'; font-size: 16px;">&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;driver.maximize_window()</span><br /><span style="font-family: 'Microsoft YaHei'; font-size: 16px;">&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;pos&nbsp;+=&nbsp;i*</span><span class="number"><span style="font-family: 'Microsoft YaHei'; font-size: 16px;">500&nbsp; &nbsp;</span><span class="comment"><span style="font-family: 'Microsoft YaHei'; font-size: 16px;">#&nbsp;每次下滚500</span><br /><span style="font-family: 'Microsoft YaHei'; font-size: 16px;">&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;js&nbsp;=&nbsp;</span><span class="string"><span style="font-family: 'Microsoft YaHei'; font-size: 16px;">"document.documentElement.scrollTop=%d"&nbsp;%&nbsp;pos</span><br /><span style="font-family: 'Microsoft YaHei'; font-size: 16px;">&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;driver.execute_script(js)</span><br /><br /><span style="font-family: 'Microsoft YaHei'; font-size: 16px;">&nbsp; &nbsp; &nbsp; &nbsp;第四个方法 百度图片解码下载及线程实现</span><br /><span style="font-family: 'Microsoft YaHei'; font-size: 16px;">&nbsp; &nbsp; &nbsp; &nbsp;参考文章：<a href="http://lovenight.github.io/2015/11/15/Python-3-%E5%A4%9A%E7%BA%BF%E7%A8%8B%E4%B8%8B%E8%BD%BD%E7%99%BE%E5%BA%A6%E5%9B%BE%E7%89%87%E6%90%9C%E7%B4%A2%E7%BB%93%E6%9E%9C/" target="_blank">Python 3 多线程下载百度图片搜索结果</a></span><br /><br /><span style="font-family: 'Microsoft YaHei'; font-size: 16px;">&nbsp; &nbsp; &nbsp; &nbsp;最近看了一些优秀的文章，真心感觉自己缕蚁一般，太过渺小，还有好多知识需要学习啊！加油~而且不知道现在自己做的这些东西是否有用？心理的几个想法一直还未实现，挺担心的。还是自己博客描述那句话：</span><br /><span style="font-family: 'Microsoft YaHei'; font-size: 16px;">&nbsp; &nbsp; &nbsp; &nbsp;无知的自己 &middot; 乐观的面对 &middot; 谦逊的学习 &middot; 低调的前行 &middot; 更要会生活</span><br /><span style="font-family: 'Microsoft YaHei'; font-size: 16px;">&nbsp; &nbsp; &nbsp; &nbsp;希望文章对你有所帮助，如果有错误或不足之处，还请海涵~</span><br /><span style="font-family: 'Microsoft YaHei'; font-size: 16px;">&nbsp; &nbsp; &nbsp;&nbsp;（By:Eastmount 2015-12-07 清晨6点 &nbsp;<a href="http://blog.csdn.net/eastmount/" target="_blank">http://blog.csdn.net/eastmount/</a>）&nbsp;&nbsp;</span><br /><br /></span></span></span></p></div><div id="MySignature"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block">
+<div id="BlogPostCategory"></div>
+<div id="EntryTag"></div>
+<div id="blog_post_info">
+</div>
+<div class="clear"></div>
+<div id="post_next_prev"></div>
+</div>
+
+
+		</div>
+		<div class = "postDesc">posted @ <span id="post-date">2015-12-18 02:49</span> <a href='http://www.cnblogs.com/eastmount/'>Eastmount</a> 阅读(<span id="post_view_count">...</span>) 评论(<span id="post_comment_count">...</span>)  <a href ="https://i.cnblogs.com/EditPosts.aspx?postid=5055908" rel="nofollow">编辑</a> <a href="#" onclick="AddToWz(5055908);return false;">收藏</a></div>
+	</div>
+	<script type="text/javascript">var allowComments=true,cb_blogId=244893,cb_entryId=5055908,cb_blogApp=currentBlogApp,cb_blogUserGuid='7b923d76-f892-e211-9010-c3d7423e3b07',cb_entryCreatedDate='2015/12/18 2:49:00';loadViewCount(cb_entryId);</script>
+	
+</div><!--end: topics 文章、评论容器-->
+</div><a name="!comments"></a><div id="blog-comments-placeholder"></div><script type="text/javascript">var commentManager = new blogCommentManager();commentManager.renderComments(0);</script>
+<div id='comment_form' class='commentform'>
+<a name='commentform'></a>
+<div id='divCommentShow'></div>
+<div id='comment_nav'><span id='span_refresh_tips'></span><a href='javascript:void(0);' onclick='return RefreshCommentList();' id='lnk_RefreshComments' runat='server' clientidmode='Static'>刷新评论</a><a href='#' onclick='return RefreshPage();'>刷新页面</a><a href='#top'>返回顶部</a></div>
+<div id='comment_form_container'></div>
+<div class='ad_text_commentbox' id='ad_text_under_commentbox'></div>
+<div id='ad_t2'></div>
+<div id='opt_under_post'></div>
+<div id='cnblogs_c1' class='c_ad_block'></div>
+<div id='under_post_news'></div>
+<div id='cnblogs_c2' class='c_ad_block'></div>
+<div id='under_post_kb'></div>
+<div id='HistoryToday' class='c_ad_block'></div>
+<script type='text/javascript'>
+    fixPostBody();
+    setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+    deliverAdT2();
+    deliverAdC1();
+    deliverAdC2();    
+    loadNewsAndKb();
+    loadBlogSignature();
+    LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+    GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate);
+    loadOptUnderPost();
+    GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);   
+</script>
+</div>
+
+
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<!--done-->
+<div class="newsItem">
+<h3 class="catListTitle">公告</h3>
+	<div id="blog-news"></div><script type="text/javascript">loadBlogNews();</script>
+</div>
+
+			<div id="calendar"><div id="blog-calendar" style="display:none"></div><script type="text/javascript">loadBlogDefaultCalendar();</script></div>
+			
+			<DIV id="leftcontentcontainer">
+				<div id="blog-sidecolumn"></div><script type="text/javascript">loadBlogSideColumn();</script>
+			</DIV>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		
+<!--done-->
+Copyright &copy;2017 Eastmount
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+</body>
+</html>
