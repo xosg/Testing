@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        html {
+            background: white;
+        }
+
+        section {
+            width: 500px;
+            height: 300px;
+            background: #eee;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: flex-end;
+            overflow: scroll;
+        }
+
+        button {
+            position: fixed;
+            top: 0;
+            left: 0;
+        }
+        div{
+            
+        }
+
+    </style>
+</head>
+
+<body>
+    <button onclick="add()">add</button>
+    <section>
+
+        <div>卧槽</div>
+    </section>
+
+    <script>
+        function add() {
+            let ele=document.createElement('div');
+            ele.innerHTML=new Date().toString();
+            document.body.querySelector('section').appendChild(ele)
+        }
+    </script>
+</body>
+
+</html>

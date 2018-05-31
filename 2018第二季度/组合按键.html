@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <script>
+        document.onkeydown = function (e) {
+            var keyCode = e.keyCode || e.which || e.charCode;
+            // mac下的cmd和control一样...
+            var ctrlKey = e.ctrlKey || e.metaKey;
+            var shiftKey = e.shiftKey;
+            // 's'
+            if (shiftKey && keyCode == 83) {
+                alert('save');
+            }
+            e.preventDefault(); //阻止默认事件
+            return false;
+        }
+    </script>
+</body>
+
+</html>
