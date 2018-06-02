@@ -1,0 +1,2 @@
+请将底图们放入background目录中
+将水印替换掉watermark.png文件
