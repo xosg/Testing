@@ -8,3 +8,5 @@ console.log(width+' '+height)
 
 
 // npm link <module> 会生成一个替身（快捷方式）
+// /usr/local/bin里面基本都是替身（但是和finder手动制作的替身有一点区别。。。）
+// sudo ln -s "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" /usr/local/bin/subl
