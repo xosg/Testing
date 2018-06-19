@@ -17,3 +17,9 @@ connection.query('SELECT * from t_article', function (error, results, fields) {
     }
     connection.end();
 });
+
+
+
+// 引用是保存在栈上，对象是保存在堆中.
+// 基础数据类型和引用变量都是值传递(完全拷贝)
+// 函数参数无论如何都是在栈中创建一个新的变量
