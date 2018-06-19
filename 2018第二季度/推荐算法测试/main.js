@@ -26,8 +26,9 @@
 // 求商品间的相似度
 function similarity(goodA, goodB) {
     let base = (goodA.numberOfUsers * goodB.numberOfUsers) ** (1 / 2)
+    // 求交集
     let intersectionSet = goodA.arrayOfUsers.filter(x => goodB.arrayOfUsers.indexOf(x) !== -1);
-    return (intersectionSet.length / base).toFixed(1)
+    return parseFloat((intersectionSet.length / base).toFixed(2))
 
 }
 
@@ -35,11 +36,15 @@ function similarity(goodA, goodB) {
 class Good {
     constructor(ID) {
         this.id = ID;
+        this.matchGood = -1;
+        this.matchestSimilarity = NaN;
         this.numberOfUsers = 0;
         this.arrayOfUsers = [];
     }
-
 }
+
+
+// 用户表和产品表基本对称(多对多的关系)
 
 class User {
     constructor(ID) {
@@ -49,6 +54,7 @@ class User {
     }
 }
 
+// 元数据对
 class Pair {
     constructor(userID, goodID) {
         this.userId = userID
@@ -88,20 +94,41 @@ function readFromLine(line) {
 
 function afterRead() {
 
-    for (let good of goods) {
-        if (!good) continue
-        let data = good.id + ' ' + good.numberOfUsers + ' ' + good.arrayOfUsers.join(',') + '\n\r'
-        fs.appendFile(paths.goodTable, data, err => {
-            if (err) console.log(err)
-        })
+
+
+
+    for (let i = 0; i <= goods.length; i++) {
+        // js中没有二维数组这个类
+        if (!goods[i]) continue
+        relation[i] = []
+        for (let j = i + 1; j <= goods.length; j++) {
+            if (!goods[j]) continue
+            relation[i][j] = similarity(goods[i], goods[j])
+            // console.log(relation[i][j])
+        }
+        goods[i].matchestSimilarity = Math.max(...(relation[i].filter(x => !!x)))
+        goods[i].matchGood = relation[i].indexOf(goods[i].matchestSimilarity)
+        // console.log(i + ' ' + goods[i].matchGood)
     }
 
-    for (let user of users) {
-        if (!user) continue
-        let data = user.id + ' ' + user.numberOfGoods + ' ' + user.arrayOfGoods.join(',') + '\n'
-        fs.appendFile(paths.userTable, data, err => {
-            if (err) console.log(err)
-        })
-    }
+    (function writeList() {
+
+        for (let good of goods) {
+            if (!good) continue
+            let data = good.id + ' ' + good.matchGood + ' ' + good.matchestSimilarity + '\n\r'
+            fs.appendFile(paths.goodTable, data, err => {
+                if (err) console.log(err)
+            })
+        }
+
+        for (let user of users) {
+            if (!user) continue
+            let data = user.id + ' ' + user.numberOfGoods + ' ' + user.arrayOfGoods.join(',') + '\n'
+            fs.appendFile(paths.userTable, data, err => {
+                if (err) console.log(err)
+            })
+        }
+    })();
+
 
 }
