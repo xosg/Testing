@@ -27,7 +27,7 @@ const cssSelector = 'div.article-item-box.csdn-tracking-statistics>h4>a';
         const list = dom.window.document.querySelectorAll(cssSelector);
         // 先将浏览器的DOM元素集合(NodeList)转换成数组,才能使用数组原型的方法
         let urlList = Array.from(list).map(e => e.getAttribute('href'))
-        runSelenium(urlList.slice(0,8))
+        runSelenium(urlList)
 
     });
 })();
@@ -63,3 +63,6 @@ async function runSelenium(urlList) {
         await driver.quit();
     }
 };
+
+
+// 一个driver对象对应一个窗口(window)
