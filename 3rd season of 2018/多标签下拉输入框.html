@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.bootcss.com/vue/2.5.13/vue.min.js"></script>
+    <link href="https://cdn.bootcss.com/bulma/0.6.1/css/bulma.min.css" rel="stylesheet">
+    <style>
+    .tags-input > ul {
+        height: 16rem;
+        overflow-y: scroll;
+        border: 1px solid #ccc;
+    }
+    .tags-input li {
+        padding: .25rem 1rem;
+    }
+    .tags-input li:hover {
+        color: white;
+        background: blue;
+    }
+    </style>
+    <title>Document</title>
+</head>
+<body>
+<div class="section" id="app">
+    <tag-input :tags="tags" max="5"></tag-input>
+</div>
+<script>
+Vue.component('tag-input', Vue.extend({
+    props: ['tags', 'max'],
+    template: '<div class="tags-input"><div class="input field is-grouped" v-on:click="popup=true" style="margin-bottom:0"><div class="control" v-for="(item,i) in selected" v-on:click.stop=""><div class="tags has-addons is-medium"><span class="tag is-link">{{ item }}</span><a v-on:click="move(item,false);" class="tag is-delete"></a></div></div></div><ul class="is-hoverable" v-show="popup"><li v-for="tag in tags" v-on:click="move(tag,true);popup=false;">{{ tag }}</li></ul></div>"tag in tags" v-on:click="move(tag,true);popup=false;">{{ tag }}</li></ul></div>',
+    data: function () {
+        return {
+            popup: false,
+            selected: [],
+        };
+    },
+    methods: {
+        move: function(item, flag) {
+            var from = flag ? this.tags : this.selected;
+            var to = flag ? this.selected : this.tags;
+            if (!flag || to.length < this.max) {
+                from.splice(from.indexOf(item), 1);
+                to.push(item);
+            }
+        },
+    }
+}));
+new Vue({
+    el: '#app',
+    data: {
+        tags: [
+            '标签1',
+            '标签2',
+            '标签3',
+            '标签4',
+            '标签5',
+            '标签6',
+            '标签7',
+            '标签8',
+            '标签9',
+            '标签10',
+            '标签11',
+            '标签12',
+        ]
+    }
+});
+</script>
+</body>
+</html>

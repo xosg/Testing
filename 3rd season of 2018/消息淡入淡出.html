@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        #msg{
+            width: 300px;
+            height: 200px;
+            background: #eee;
+            border-radius: 5px;
+            position: fixed;
+            animation: pop 2 linear forwards 5s;            
+        }
+
+        @keyframes pop{
+            0%{
+                opacity: 0;
+                right: 10%;
+            }
+            10%{
+                opacity: 1;
+                right: 5%;
+            }
+            80%{
+                opacity: 1;
+                right: 5%;
+            }
+            100%{
+                opacity: 0;
+                right: -300px;
+            }
+        }
+
+        
+    </style>
+</head>
+<body>
+    <div id="msg">hello world</div>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        html {
+            font-family: arial;
+        }
+
+        #corpus {
+            display: block;
+            min-height: 100px;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+
+    <datalist id="wordlist"></datalist>
+    <input type="text" list="wordlist" placeholder="search">
+    <script>
+        var html = '';
+
+        let wordlist = document.querySelector('#wordlist')
+        let corpus = document.querySelector('#corpus');
+        ['1234', 'sdfa', '23dd'].forEach(function (word) {
+            html += '<option value="' + word + '">';
+        });
+
+        wordlist.innerHTML = html;
+    </script>
+</body>
+
+</html>
